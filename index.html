@@ -269,6 +269,20 @@ table.bi td.sh{color:var(--cyan)}
  .kid{padding:12px 0}
  h2{font-size:1.4em}
 }
+/* ===== VOIX OFF ===== */
+.vo{display:flex;align-items:center;gap:12px;border:1px solid var(--rule2);border-left:3px solid var(--hl);background:var(--paper3);padding:10px 14px}
+.vo-play{width:40px;height:40px;flex:0 0 40px;border-radius:50%;border:1px solid var(--hl);background:transparent;color:var(--hl);cursor:pointer;font-size:13px}
+.vo-play:hover,.vo.on .vo-play{background:var(--hl);color:var(--paper)}
+.vo-meta{flex:1;min-width:0;display:flex;flex-direction:column;gap:7px}
+.vo-lbl{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vo-bar{height:4px;background:var(--rule);cursor:pointer;position:relative}
+.vo-bar::after{content:'';position:absolute;inset:-10px 0}
+.vo-bar i{display:block;height:100%;width:0;background:var(--hl)}
+.vo-time{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--hl);white-space:nowrap}
+.vo-tx{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--rule2);background:transparent;color:var(--dim);padding:8px 10px;cursor:pointer;min-height:36px}
+.vo-tx:hover,.vo-tx[aria-expanded="true"]{color:var(--ink);border-color:var(--ink)}
+.vo-text{font-style:italic;color:var(--dim);line-height:1.7;font-size:clamp(.86em,2vmin,.98em);border-left:1px solid var(--rule2);padding:2px 0 2px 16px;max-width:75ch}
+@media(max-width:720px){.vo{gap:10px;padding:10px 12px}.vo-play{width:44px;height:44px;flex-basis:44px}.vo-lbl{font-size:9.5px;white-space:normal;line-height:1.4}}
 </style>
 </head>
 <body>
@@ -369,6 +383,7 @@ table.bi td.sh{color:var(--cyan)}
 <section class="scene" id="s1"><div class="wrap">
   <div class="kicker">Chapitre 02 · Le dos</div>
   <h2>Le dos — <em>l'éventail le plus vaste du corps</em></h2>
+  <div class="vo" data-vo="dos"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 41</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
   <p class="lead">Le dos n'est pas un muscle mais une équipe : grand dorsal, trapèze (3 étages), grand rond, petit rond, rhomboïdes, deltoïde postérieur. Chacun répond à une direction de tir précise. <b>Change la hauteur de la poulie et la prise → change le faisceau dominant.</b></p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul><li>Direction du tir = faisceau dominant : <strong>vertical → grand dorsal</strong>, <strong>horizontal → trapèze moyen + rhomboïdes</strong>, <strong>bras tendus vers les cuisses (pull-over) → dorsal inférieur + trapèze inférieur</strong>.</li><li>Le dos bouge en deux temps : l'<strong>omoplate</strong> glisse (trapèze, rhomboïdes) puis le <strong>bras</strong> tire (dorsal, grand rond). Un tirage sans mouvement d'omoplate oublie la moitié des muscles.</li><li>Le <strong>deltoïde postérieur</strong> (oiseau, face pull) est le chaînon arrière le plus négligé — clé du dos en V et des épaules saines.</li></ul></div>
   <div class="anat">
@@ -377,13 +392,14 @@ table.bi td.sh{color:var(--cyan)}
     <div class="anat-card"><h4>Rôles posturaux & vie réelle</h4><p>Chaîne postérieure du haut du corps : posture, tirer une porte, grimper, ramer. Le trapèze inf. et les rhomboïdes contrôlent la position de l'omoplate — leur faiblesse favorise les épaules qui roulent en avant. Le dorsal participe aussi à la respiration forcée (muscle accessoire).</p></div>
   </div>
   <div class="card explorer" data-key="dos" data-fig="Fig. 2" data-cap="Le dos vu de derrière · 9 faisceaux, de chaque côté"></div>
-  <div class="recap"><b>En une phrase :</b> tirage vertical (haut) → grand dorsal/grand rond ; tirage horizontal (milieu) → trapèze moyen + rhomboïdes ; extension bras tendus (pull-over) → partie basse du dorsal et trapèze inférieur ; oiseau/rowing prise large penché → deltoïde postérieur.</div>
+  <div class="recap"><b>En une phrase :</b> tirage vertical (haut) → grand dorsal/grand rond ; tirage horizontal (milieu) → trapèze moyen + rhomboïdes ; extension bras tendus (pull-over) → partie basse du dorsal et trapèze inférieur ; rowing buste penché coudes ouverts → deltoïde postérieur + trapèze moyen.</div>
 </div></section>
 
 <!-- ============ 2. PECTORAUX ============ -->
 <section class="scene" id="s2"><div class="wrap">
   <div class="kicker">Chapitre 03 · Les pectoraux</div>
   <h2>Les pectoraux — <em>3 étages, 3 inclinaisons</em></h2>
+  <div class="vo" data-vo="pec"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 29</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
   <p class="lead">Le grand pectoral s'étale en éventail de la clavicule jusqu'aux côtes : portion <b>claviculaire</b> (haut), <b>sternale</b> (milieu), <b>abdominale</b> (bas). L'angle du banc décide qui travaille — dans le schéma, le banc incline tout le corps et le trajet des bras reste vertical, comme sur un vrai développé.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul><li><strong>L'angle du banc décide de l'étage</strong> : incliné 30–45° → portion claviculaire ; plat → sternale ; décliné / dips penché → abdominale.</li><li>Au-delà de <strong>45° d'inclinaison</strong>, le deltoïde antérieur prend le relais et le pec sort du mouvement.</li><li>Les <strong>dips buste penché</strong> alignent pic de résistance et pic d'étirement : le meilleur exercice du bas de poitrine.</li></ul></div>
   <div class="test"><b>Test express :</b> développe couché les pieds au sol, épaules serrées — sens la tension monter vers l'aisselle (sternal). Passe en incliné à 30° : la tension remonte vers la clavicule. C'est ton angle-mesureur.</div>
@@ -400,6 +416,7 @@ table.bi td.sh{color:var(--cyan)}
 <section class="scene" id="s3"><div class="wrap">
   <div class="kicker">Chapitre 04 · Les épaules</div>
   <h2>Les épaules — <em>le muscle à angles par excellence, et ses gardiens</em></h2>
+  <div class="vo" data-vo="del"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 36</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
   <p class="lead">Le deltoïde coiffe la tête de l'humérus comme un capuchon à trois pans : <b>antérieur</b> (sur la clavicule), <b>moyen</b> (sur l'acromion), <b>postérieur</b> (sur l'épine de l'omoplate). Dessous, quatre petits muscles — la <b>coiffe des rotateurs</b> — plaquent la tête humérale dans la glène pendant que le deltoïde la soulève. Le schéma montre les deux couches, et les plans dans lesquels le bras se lève.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul>
     <li><strong>Le deltoïde EST un muscle à angles</strong> : 3 chefs qui tirent dans 3 plans — aucun exercice unique ne couvre les trois.</li>
@@ -421,6 +438,7 @@ table.bi td.sh{color:var(--cyan)}
 <section class="scene" id="s5"><div class="wrap">
   <div class="kicker">Chapitre 05 · Les bras</div>
   <h2>Les bras — <em>l'angle de l'épaule décide de la longue tête</em></h2>
+  <div class="vo" data-vo="bras"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 13</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
   <p class="lead">Triceps et biceps sont biarticulaires : leurs longues têtes traversent l'épaule. Ce n'est pas la prise qui change le recrutement, c'est <b>la position de l'épaule</b> — et donc la longueur à laquelle travaille le muscle. Regarde la jauge « longue tête » pendant l'animation : elle change du tout au tout selon l'angle de l'épaule.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul><li>Ce n'est pas la prise mais <strong>la position de l'épaule</strong> qui décide : bras au-dessus de la tête = longue tête du triceps étirée ; bras derrière le buste = longue tête du biceps étirée.</li><li>Extension <strong>overhead : 1,5× plus d'hypertrophie</strong> de la longue tête (IRM, Maeo 2023) avec 34–39 % de charge en MOINS.</li><li>Le <strong>curl pupitre s'effondre en 2e moitié</strong> de mouvement (Oliveira 2009) : le curl incliné garde la tension sur toute l'amplitude.</li></ul></div>
   <div class="anat">
@@ -437,6 +455,7 @@ table.bi td.sh{color:var(--cyan)}
 <section class="scene" id="s9"><div class="wrap">
   <div class="kicker">Chapitre 06 · Les avant-bras</div>
   <h2>Les avant-bras — <em>deux épicondyles, deux familles</em></h2>
+  <div class="vo" data-vo="avb"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 14</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
   <p class="lead">L'avant-bras compte une vingtaine de muscles, mais pour l'entraînement trois groupes suffisent : les <b>fléchisseurs</b> du poignet, accrochés à la bosse interne du coude ; les <b>extenseurs</b>, accrochés à la bosse externe ; et le <b>brachioradial</b>, qui ne touche pas le poignet mais fléchit le coude. Le modèle fait tourner le radius autour de l'ulna : c'est la prono-supination, qui décide qui travaille au curl.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul>
     <li><strong>Paume vers le haut, poignet qui s'enroule</strong> → fléchisseurs ; <strong>paume vers le bas, dos de la main qui monte</strong> → extenseurs.</li>
@@ -457,6 +476,7 @@ table.bi td.sh{color:var(--cyan)}
 <section class="scene" id="s10"><div class="wrap">
   <div class="kicker">Chapitre 07 · Les abdominaux</div>
   <h2>Les abdominaux — <em>enrouler, basculer, tourner</em></h2>
+  <div class="vo" data-vo="abs"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 18</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
   <p class="lead">Le <b>grand droit</b> relie le pubis aux côtes en une longue bande verticale, coupée par des intersections tendineuses (les « carreaux »). Sur les côtés, les <b>obliques</b> croisent leurs fibres en X : l'externe descend vers l'avant, l'interne monte vers l'avant. Dans le schéma, la colonne est articulée en deux segments, lombaire et thoracique, pour que tu voies qui se raccourcit selon que c'est le buste ou le bassin qui bouge.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul>
     <li>Le grand droit est <strong>un seul muscle</strong> : « abdos hauts / bas » est un débat ouvert, avec des différences faibles quand elles sont mesurées.</li>
@@ -476,6 +496,7 @@ table.bi td.sh{color:var(--cyan)}
 <section class="scene" id="s11"><div class="wrap">
   <div class="kicker">Chapitre 08 · Les fessiers</div>
   <h2>Les fessiers — <em>au-dessus ou sous l'axe de la hanche</em></h2>
+  <div class="vo" data-vo="fes"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 10</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
   <p class="lead">Le <b>grand fessier</b> est l'un des plus volumineux muscles du corps, et il n'a pas une seule fonction : son <b>faisceau supérieur</b>, qui passe au-dessus de l'axe de la hanche, écarte la jambe ; son <b>faisceau inférieur</b>, plus bas, la ramène vers l'arrière. Dessous et sur le côté, le <b>moyen fessier</b> stabilise le bassin à chaque pas. Le schéma montre les trois, vus de derrière, et leur longueur selon l'exercice.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul>
     <li><strong>Extension de hanche</strong> (hip thrust, squat) → tout le grand fessier ; <strong>abduction</strong> (écarter la jambe) → moyen fessier + faisceau supérieur.</li>
@@ -496,6 +517,7 @@ table.bi td.sh{color:var(--cyan)}
 <section class="scene" id="s12"><div class="wrap">
   <div class="kicker">Chapitre 09 · Les cuisses</div>
   <h2>Les cuisses — <em>quadriceps et adducteurs, un seul biarticulaire chacun</em></h2>
+  <div class="vo" data-vo="cuisses"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 23</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
   <p class="lead">Le quadriceps a quatre chefs, mais un seul traverse la hanche : le <b>droit fémoral</b>. Les trois <b>vastes</b> ne dépendent que du genou. Côté interne, les <b>adducteurs</b> forment un groupe plus gros qu'on ne le croit, dont le <b>grand adducteur</b> a une partie qui se comporte comme un ischio. Même règle que partout : regarde quelle articulation bouge, et ce qu'elle fait à la longueur du muscle.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul>
     <li>Le <strong>squat</strong> fait grossir les vastes et les adducteurs, <strong>pas le droit fémoral</strong>, dont la longueur varie peu (Kubo 2019).</li>
@@ -521,6 +543,7 @@ table.bi td.sh{color:var(--cyan)}
 <section class="scene" id="s6"><div class="wrap">
   <div class="kicker">Chapitre 10 · Ischios &amp; mollets</div>
   <h2>Ischios &amp; mollets — <em>hanche ou genou ? La question qui départage tout</em></h2>
+  <div class="vo" data-vo="jambes"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 16</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
   <p class="lead">Ischios et mollets sont biarticulaires : selon que le mouvement part de la hanche ou du genou, ce ne sont pas les mêmes faisceaux qui dominent — et pour les mollets, l'IRM montre que l'angle du genou décide même de ce qui grossit.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul><li>Ischios : <strong>dominante hanche (RDL) → biceps fémoral</strong> ; dominante genou (nordic, leg curl) → semitendineux.</li><li>Le <strong>leg curl assis</strong> (hanche fléchie, ischios pré-étirés) fait plus grossir les ischios que le leg curl allongé (Maeo 2021).</li><li>Mollets : les gastrocnémius <strong>ne grossissent vraiment qu'en debout, genou tendu</strong> (+9 à 12 %) ; assis = soléaire.</li></ul></div>
   <div class="anat">
@@ -537,6 +560,7 @@ table.bi td.sh{color:var(--cyan)}
 <section class="scene" id="s8"><div class="wrap">
   <div class="kicker">Chapitre 11 · Biomécanique</div>
   <h2>Tension, longueur et bras de levier — <em>pourquoi l'angle change la force</em></h2>
+  <div class="vo" data-vo="bio"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · Les principes de l'hypertrophie</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 43</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
   <p class="lead drop">Un muscle ne produit pas la même force à toutes les longueurs. Cette force dépend de ce qui se passe dans chacun de ses sarcomères, ces unités contractiles de quelques micromètres alignées par milliers dans chaque fibre. En face, l'exercice impose une demande qui varie avec le bras de levier. Ce chapitre relie les deux, du filament à la barre.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul>
     <li>La force active culmine sur un <strong>plateau de longueur optimale</strong> (chevauchement idéal actine-myosine) ; au-delà, la <strong>tension passive</strong> des tissus conjonctifs prend le relais.</li>
@@ -732,11 +756,11 @@ var DOS={
    txt:"Bras tendus, on ramène la barre de la hauteur du front jusqu'aux cuisses : le coude ne plie pas, donc ni biceps ni rhomboïdes pour aider. C'est l'<b>épaule seule</b> qui s'étend, dans l'axe des fibres verticales de la <b>partie basse du grand dorsal</b> (crête iliaque → bras), avec le <b>trapèze inférieur</b> qui abaisse l'omoplate. Différent du tirage vertical : là-bas le coude plie et le bras descend sur le côté ; ici il descend devant, bras droit.",
    fp:"À la poulie haute, le couple résistant culmine quand le bras est perpendiculaire au câble (bras vers 30–60° devant le corps) ; près des cuisses le câble s'aligne avec le bras et la tension chute, alors que le dorsal est raccourci — finir lentement, sans plier les coudes.",
    exos:[["Pull-over à la poulie haute","barre droite ou corde, bras tendus, buste légèrement penché"],["Pull-over haltère allongé","étirement en haut, pas au-delà de l'épaule confortable"],["Rowing haltère coude vers la hanche","trajectoire en arc, vise les fibres basses du dorsal"]]},
-  {deg:"Tirage BUSTE PENCHÉ ↘",lab:"Coudes ouverts · abduction horizontale",
-   hit:[8,2,3],partial:[7],
-   txt:"Buste penché, on écarte les bras vers l'arrière : <b>deltoïde postérieur</b> + grand rond, épaulés par le <b>petit rond</b> (coiffe des rotateurs, rotation externe). Le chaînon arrière de l'épaule, indispensable pour l'équilibre postural.",
-   fp:"Couple max bras à l'horizontale ; au-delà, le deltoïde postérieur se raccourcit vite — monter jusqu'à l'horizontale puis redescendre lentement, pas plus haut.",
-   exos:[["Oiseau (élévations buste penché)","paumes face à face ou légère rotation externe, coudes qui mènent"],["Rowing prise large penché","coudes à 90°, tirer vers la poitrine"],["Oiseau buste appuyé sur banc incliné","supprime l'élan du dos, même trajectoire"]]}
+  {deg:"Rowing BUSTE PENCHÉ ↘",lab:"Prise large, coudes ouverts · barre vers le bas de la poitrine",
+   hit:[8,5],partial:[7,2],
+   txt:"Buste penché, on tire la barre vers le bas de la poitrine en gardant les coudes écartés, à environ 70° du tronc : le coude monte et passe derrière le dos, dans le plan transverse. Ce sont le <b>deltoïde postérieur</b> et le <b>trapèze moyen</b> qui mènent, avec les rhomboïdes et le grand rond en renfort. Coudes serrés le long du corps, la même barre ferait travailler surtout le grand dorsal. Bras tendus qui s'écartent sans plier le coude, ce serait un oiseau : il est dans le chapitre Épaules.",
+   fp:"Bras pendants, la charge est dans l'axe de l'épaule : le couple est presque nul en bas. Il augmente à mesure que le coude monte et culmine en fin de tirage, bras proches de l'horizontale — là où deltoïde postérieur et trapèze moyen sont déjà raccourcis. Point dur en haut : marquer une seconde de pause, sans redresser le buste pour tricher.",
+   exos:[["Rowing barre buste penché prise large","coudes ouverts, barre vers le bas des pectoraux, dos gainé"],["Rowing haltères buste appuyé sur banc incliné","coudes à 70° du tronc, supprime l'élan du dos"],["Rowing T-bar prise large","poignées larges, même trajectoire de coude"]]}
  ]};
 var PEC={
  fibers:["Portion claviculaire (haut)","Portion sternale (milieu)","Portion abdominale (bas)"],
@@ -774,7 +798,7 @@ var DEL={
    hit:[2],partial:[4,5],
    txt:"Conduire le coude en arrière, buste penché, aligne la résistance avec le chef <b>postérieur</b>, aidé de l'infra-épineux et du petit rond. Le plus faible chez presque tout le monde — et un facteur classique d'épaules douloureuses quand on le néglige.",
    fp:"Couple max bras à l'horizontale ; au-delà le postérieur raccourcit vite et la tension s'effondre — amplitude contrôlée jusqu'à l'horizontale, retour excentrique lent.",
-   exos:[["Oiseau haltères","buste penché 45°+, petites charges, tempo contrôlé"],["Face pull poulie","paumes vers l'arrière, tirer vers le front"],["Rowing prise neutre coudes ouverts","version composée postérieur + dos"]]},
+   exos:[["Oiseau haltères","buste penché 45°+, petites charges, tempo contrôlé"],["Face pull poulie","paumes vers l'arrière, tirer vers le front"],["Oiseau à la poulie, câbles croisés","tension dès le départ, même trajectoire bras tendus"]]},
   {deg:"Plan de l'OMOPLATE · scaption",lab:"≈ 30° devant le plan frontal · élévation en Y",
    hit:[1,0],partial:[3],
    txt:"L'omoplate n'est pas orientée de face : elle est tournée d'environ 30° vers l'avant. Lever le bras dans CE plan (bras en « V » légèrement devant soi) aligne la tête humérale avec la glène : l'espace sous l'acromion est mieux préservé, les chefs <b>moyen</b> et <b>antérieur</b> se partagent l'effort. C'est la variante d'élévation la plus tolérée par les épaules sensibles.",
@@ -1034,6 +1058,7 @@ setTimeout(function(){if(!window.__3d){document.querySelectorAll(".v-fallback").
 
 /* ============ TABS ============ */
 function goTab(n){
+  if(window.pauseVO)pauseVO();
   document.querySelectorAll(".tab").forEach(function(x){x.classList.toggle("on",x.dataset.s===String(n));});
   document.querySelectorAll(".scene").forEach(function(s){s.classList.remove("active")});
   var sc=document.getElementById("s"+n);sc.classList.add("active");sc.scrollTop=0;
@@ -1041,6 +1066,30 @@ function goTab(n){
 }
 document.querySelectorAll(".tab").forEach(function(t){t.onclick=function(){goTab(t.dataset.s);};});
 document.querySelectorAll(".toc button").forEach(function(b){b.onclick=function(){goTab(b.dataset.go);};});
+
+/* ============ VOIX OFF ============ */
+var VO={"dos": "Le dos n'est pas un muscle : c'est une équipe. Et la règle à retenir est simple : la direction du tirage décide du faisceau qui travaille. Tirage vertical : le coude plie, le bras descend sur le côté. C'est le grand dorsal qui mène, aidé du grand rond. Tirage horizontal, à hauteur de poitrine : les omoplates se pincent. Ce sont le trapèze moyen et les rhomboïdes, l'épaisseur du dos. Pull-over, bras tendus, de la tête jusqu'aux cuisses : le coude ne plie pas, c'est la partie basse du grand dorsal, avec le trapèze inférieur qui abaisse l'omoplate. Et rowing buste penché, coudes ouverts : le coude passe derrière le dos. Là, ce sont le deltoïde postérieur et le trapèze moyen. Deuxième point clé : le dos bouge en deux temps. L'omoplate glisse, puis le bras tire. Un tirage où les omoplates restent figées oublie la moitié des muscles. Laisse-les s'écarter au début du mouvement, c'est leur position étirée, puis ramène-les. Sur une semaine, trois directions suffisent : un tirage vertical, un tirage horizontal, et un travail du chaînon arrière.", "pec": "Le grand pectoral s'ouvre en éventail, de la clavicule jusqu'aux côtes. Trois étages, trois inclinaisons de banc. Banc incliné, entre trente et quarante-cinq degrés : c'est la portion claviculaire, le haut de la poitrine. Au-delà de quarante-cinq degrés, l'épaule prend le relais. Banc plat : la portion sternale, la plus massive, celle qui fait le volume. Développé décliné, ou dips buste penché : la portion abdominale, le bas de la poitrine. Pourquoi l'angle compte autant ? Parce que le tendon du pectoral est torsadé : les fibres du bas s'insèrent le plus haut sur le bras. Chaque étage tire donc dans sa propre direction. Dernier point : la position basse, poitrine étirée, est la plus productive. Aux dips penchés, le pic de résistance tombe pile sur le pic d'étirement. C'est ce qui en fait le meilleur exercice du bas de poitrine. Ne raccourcis pas cette phase.", "del": "Le deltoïde coiffe l'épaule avec trois chefs, qui tirent dans trois plans différents. L'antérieur lève le bras vers l'avant. Le moyen l'écarte sur le côté. Le postérieur le ramène vers l'arrière. Aucun exercice ne couvre les trois. L'antérieur travaille déjà dans tous tes développés : c'est rarement lui qu'il faut ajouter. Le moyen, celui de la largeur d'épaules, ne domine dans aucun développé : l'écarté latéral est irremplaçable. Et le postérieur est le chaînon faible chez presque tout le monde. Oiseau, face pull : c'est lui qu'il faut aller chercher. Sous le deltoïde, quatre petits muscles forment la coiffe des rotateurs. Pendant que le deltoïde soulève le bras, ils plaquent la tête de l'humérus contre l'articulation. Les rotations externes les entretiennent. Enfin, le bras ne se lève jamais seul : au-delà de trente degrés, l'omoplate bascule avec lui. Si ton épaule est sensible, lève le bras dans le plan de l'omoplate, légèrement devant toi, en V. C'est la trajectoire la mieux tolérée.", "bras": "Pour le biceps comme pour le triceps, ce n'est pas la prise qui change le recrutement : c'est la position de l'épaule. La longue tête de ces deux muscles traverse l'épaule. Sa longueur dépend donc de l'angle du bras. Bras au-dessus de la tête, la longue tête du triceps est étirée. Dans une étude par IRM, l'extension au-dessus de la tête l'a fait grossir une fois et demie plus que l'extension bras le long du corps, avec une charge pourtant plus légère. Pour le biceps, c'est l'inverse. Bras derrière le buste, sur un banc incliné, la longue tête part étirée, et l'activation reste forte sur toute l'amplitude. Au pupitre, l'épaule est fléchie : la longue tête travaille courte, et la seconde moitié du mouvement n'est presque plus chargée. Retiens la règle : place d'abord l'épaule pour étirer le muscle, puis travaille le coude.", "avb": "L'avant-bras compte une vingtaine de muscles, mais pour t'entraîner, trois groupes suffisent. Les fléchisseurs du poignet partent de la bosse interne du coude. Paume vers le haut, poignet qui s'enroule : ce sont eux. Les extenseurs partent de la bosse externe. Paume vers le bas, dos de la main qui monte : ce sont eux. Et le brachioradial, qui ne touche pas le poignet : c'est un fléchisseur du coude. Il se travaille au curl marteau ou au curl en pronation, pas au curl poignet. Ce qui décide, c'est la rotation de l'avant-bras. Pouce vers le haut ou paume vers le bas, le brachioradial prend une plus grande part du travail. Dernière chose : la poigne limite souvent le soulevé de terre et les tirages avant les dorsaux. La travailler directement, c'est gagner des répétitions partout ailleurs.", "abs": "Le grand droit est un seul muscle, une longue bande qui relie le pubis aux côtes. Abdos du haut et abdos du bas, c'est un débat encore ouvert, avec des différences faibles quand on les mesure. Ce qui compte vraiment, c'est ce qui bouge. Au crunch, le buste s'enroule vers le bassin. Au relevé de genoux, c'est le bassin qui bascule vers les côtes. Attention : lever les jambes, c'est d'abord le travail des fléchisseurs de hanche. Le grand droit ne travaille que quand le bassin bascule. Sur les côtés, les obliques croisent leurs fibres en X, et ils travaillent toujours en diagonale. Pour tourner le buste vers la gauche, c'est l'oblique externe droit et l'oblique interne gauche, ensemble. Enfin, au quotidien, leur vrai rôle est de résister au mouvement : gainage, anti-rotation, porter une valise d'une main. Ajoute ce travail à côté des enroulements.", "fes": "Le grand fessier n'a pas une seule fonction. Son faisceau supérieur, qui passe au-dessus de l'axe de la hanche, écarte la jambe. Son faisceau inférieur, plus bas, la ramène vers l'arrière. Et sur le côté, le moyen fessier stabilise ton bassin à chaque pas. Pour l'extension de hanche, hip thrust et squat font grossir les fessiers autant l'un que l'autre, même si le hip thrust brûle davantage. Ce qui change, c'est la longueur : le hip thrust charge le fessier en position courte, le squat profond le charge étiré. Et la profondeur compte vraiment : le squat complet fait environ trois fois plus grossir le grand fessier que le demi-squat. Pour l'abduction, écarter la jambe, c'est le moyen fessier et le faisceau supérieur. Un exercice de chaque famille, et tout le fessier est couvert.", "cuisses": "Le quadriceps a quatre chefs, mais un seul traverse la hanche : le droit fémoral. Les trois vastes ne dépendent que du genou. Conséquence directe : le squat fait grossir les vastes, mais très peu le droit fémoral, dont la longueur change à peine pendant le mouvement. Pour le cibler, il faut l'étirer : leg extension avec le dossier incliné vers l'arrière, ou sissy squat, hanche ouverte et genou fléchi. Et tourner les pieds pour viser le vaste interne, c'est un mythe : seule la profondeur change un peu sa part. Côté interne, les adducteurs forment un groupe plus gros qu'on ne le croit. Le grand adducteur a même une partie qui se comporte comme un ischio : c'est un extenseur de hanche, qui travaille au squat profond et au squat sumo. Même règle que partout : regarde quelle articulation bouge, et ce qu'elle fait à la longueur du muscle.", "jambes": "Ischios et mollets traversent deux articulations. La question qui départage tout, c'est : hanche ou genou ? Pour les ischios, quand le mouvement part de la hanche, comme au soulevé de terre roumain, c'est le biceps fémoral qui domine. Quand il part du genou, comme au leg curl ou au nordic, ce sont les faisceaux internes. Et si tu ne devais garder qu'un exercice d'isolation : le leg curl assis. Hanche fléchie, les ischios sont déjà étirés, et ils grossissent davantage qu'au leg curl allongé. Pour les mollets, c'est l'angle du genou qui décide. Debout, genou tendu, les gastrocnémiens sont étirés et grossissent. Assis, genou fléchi, ils sont détendus : c'est le soléaire qui travaille. Le mollet assis n'est donc pas un doublon du debout, c'est un autre muscle. Et la position des pieds, pointes en dedans ou en dehors, ne change rien. Seul le genou compte.", "bio": "Trois principes expliquent presque tout ce qui fait grossir un muscle selon l'angle. Premier principe : la tension dépend de la longueur. Un muscle est le plus fort à mi-longueur, quand ses filaments se chevauchent idéalement. Très raccourci, il n'a presque plus de force. Très étiré, ce sont les tissus élastiques qui prennent le relais. Deuxième principe : la difficulté d'un exercice ne vient pas du poids, mais du bras de levier. Le point dur, c'est l'endroit où la demande dépasse le plus ce que le muscle peut fournir. Il change selon l'outil : haltère, poulie ou machine. Troisième principe : charger le muscle en position étirée est ce qui produit le plus d'hypertrophie dans plusieurs études par IRM, surtout pour les muscles qui traversent deux articulations. Extension au-dessus de la tête, leg curl assis, mollets debout talons bas. Attention : étiré ne veut pas dire douloureux, et l'amplitude complète reste la base. L'idée, c'est de ne jamais raccourcir la phase étirée par confort. Et rappelle-toi qu'en freinant la charge, tu es plus fort qu'en la montant : contrôle toujours la descente."};
+(function(){
+  var cur=null;
+  function fmt(t){t=Math.max(0,Math.round(t));return Math.floor(t/60)+" min "+String(t%60).padStart(2,"0");}
+  document.querySelectorAll(".vo").forEach(function(box){
+    var k=box.dataset.vo,btn=box.querySelector(".vo-play"),bar=box.querySelector(".vo-bar"),fill=bar.querySelector("i"),time=box.querySelector(".vo-time"),tx=box.querySelector(".vo-tx"),txt=box.nextElementSibling,total=time.textContent,a=null;
+    txt.textContent=VO[k];
+    function audio(){if(!a){a=new Audio("voix/"+k+".mp3");a.preload="metadata";
+      a.addEventListener("timeupdate",function(){if(a.duration){fill.style.width=(a.currentTime/a.duration*100)+"%";time.textContent=fmt(a.duration-a.currentTime);}});
+      a.addEventListener("ended",function(){box.classList.remove("on");btn.textContent="▶";fill.style.width="0";time.textContent=total;});
+      a.addEventListener("error",function(){time.textContent="audio indisponible";box.classList.remove("on");btn.textContent="▶";});}
+      return a;}
+    btn.onclick=function(){var x=audio();if(x.paused){if(cur&&cur!==x)cur.pause();cur=x;x.play().catch(function(){});box.classList.add("on");btn.textContent="❚❚";btn.setAttribute("aria-label","Mettre en pause");}
+      else{x.pause();box.classList.remove("on");btn.textContent="▶";btn.setAttribute("aria-label","Écouter la voix off");}};
+    function seek(e){var x=audio(),r=bar.getBoundingClientRect(),f=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width));var go=function(){x.currentTime=f*x.duration;};if(x.duration)go();else x.addEventListener("loadedmetadata",go,{once:true});}
+    bar.addEventListener("click",seek);
+    bar.addEventListener("keydown",function(e){var x=audio();if(!x.duration)return;if(e.key==="ArrowRight")x.currentTime=Math.min(x.duration,x.currentTime+5);if(e.key==="ArrowLeft")x.currentTime=Math.max(0,x.currentTime-5);});
+    tx.onclick=function(){var open=txt.hidden;txt.hidden=!open;tx.setAttribute("aria-expanded",String(open));};
+    box._pause=function(){if(a&&!a.paused){a.pause();box.classList.remove("on");btn.textContent="▶";}};
+  });
+  window.pauseVO=function(){document.querySelectorAll(".vo").forEach(function(b){b._pause&&b._pause();});};
+})();
 
 /* ============ BIOMÉCANIQUE · I sarcomère ============ */
 (function(){
@@ -1562,7 +1611,7 @@ const CFG={
   {desc:"Épaule 165° → 25° d'élévation dans le plan frontal · omoplates qui s'abaissent",root:-8,arms:{ik:{h0:[40,99,3],h1:[40,56,8],pole:[.6,-1,-.3]},ret:[0,10],elev:[6,-4]},legs:{hip:90,knee:90}},
   {desc:"Bras de l'avant (75°) vers l'arrière (−25°) · omoplates de l'écartement au pincement",arms:{ik:{h0:[6,37,51],h1:[6,36,11],pole:[.35,-1,-.7]},ret:[-10,14]},legs:{hip:90,knee:25}},
   {desc:"Debout, buste penché 15° · bras tendus de 140° de flexion jusqu'aux cuisses (−5°), plan sagittal",root:15,arms:{e:[140,-5],p:90,el:12,ret:[0,6],elev:[5,-6]},legs:{hip:15,knee:12},plant:true,view:'profil'},
-  {desc:"Buste penché 60°, bras écartés vers l'arrière · abduction horizontale",root:60,arms:{e:[60,90],p:[90,-8],el:20,r:[0,60],ret:[-6,12]},legs:{hip:60,knee:15},plant:true,view:'dos'}
+  {desc:"Buste penché 60° · barre tirée en ligne droite vers le bas de la poitrine, coudes ouverts à ~70° du tronc",root:60,arms:{ik:{h0:[30,21,45],h1:[30,41,10],pole:[1,.35,-.6]},ret:[-6,12]},legs:{hip:60,knee:15},plant:true,view:'34d'}
  ]},
  pec:{sides:'RL',rad:.95,focus:['root',[0,44,5]],dist:125,view:[0,-.6,1],poses:[
   {desc:"Banc à 35° · bras de la position basse (étirée) au verrouillage vertical",root:-55,arms:{ik:{h0:[40,47,7],h1:[40,69,41],pole:[1,0,-1]},ret:10},legs:{hip:35,knee:90}},
