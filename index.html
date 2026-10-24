@@ -32,9 +32,12 @@ a{color:var(--cyan)}
 #logo sup{font-family:'IBM Plex Mono',monospace;font-size:.22em;font-weight:500;letter-spacing:.2em;vertical-align:super;color:var(--hl);border:1px solid var(--hl);padding:2px 6px;margin-left:8px}
 .mh-sub{font-style:italic;color:var(--dim);font-size:clamp(0.72em,1.8vmin,0.94em);padding:3px 0 clamp(6px,1.1vh,11px);border-bottom:3px double var(--rule2)}
 .tabs{display:flex;justify-content:center;flex-wrap:wrap;padding:0 clamp(8px,2vw,24px);border-bottom:1px solid var(--rule);counter-reset:tb}
-.tab{background:transparent;border:none;border-bottom:2px solid transparent;color:var(--dim);padding:clamp(6px,1vh,10px) clamp(7px,1.3vw,16px);cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:clamp(0.6em,1.5vmin,0.78em);letter-spacing:.13em;text-transform:uppercase;transition:color .15s,background .15s;counter-increment:tb}
-.tab::before{content:counter(tb,decimal-leading-zero) " ";color:var(--faint);font-size:.85em}
+.tab{background:transparent;border:none;border-bottom:2px solid transparent;color:var(--dim);padding:clamp(6px,1vh,10px) clamp(6px,.85vw,13px);cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:clamp(0.6em,1.5vmin,0.78em);letter-spacing:.09em;text-transform:uppercase;transition:color .15s,background .15s;counter-increment:tb}
+.tab::before{content:none}
+@media(min-width:721px) and (max-width:1600px){.tab-grp{display:none}}
+@media(min-width:721px){.tabs{flex-wrap:nowrap;overflow-x:auto;justify-content:safe center;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tab{flex:0 0 auto}}
 .tab:hover{color:var(--ink)}
+.tab-grp{align-self:center;font-family:'IBM Plex Mono',monospace;font-size:clamp(0.52em,1.25vmin,0.62em);letter-spacing:.2em;text-transform:uppercase;color:var(--hl);opacity:.75;padding:0 4px 0 14px;border-left:1px solid var(--rule2);margin-left:6px;white-space:nowrap}
 .tab.on{color:var(--paper);background:var(--ink)}
 .tab.on::before{color:#6f6a5e}
 .tab:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--hl);outline-offset:2px}
@@ -115,6 +118,9 @@ p.txt b{color:var(--ink);font-weight:600}
 .viewer figcaption{position:absolute;left:0;right:0;bottom:0;padding:7px 14px;font-family:'IBM Plex Mono',monospace;font-size:clamp(0.56em,1.4vmin,0.68em);letter-spacing:.1em;text-transform:uppercase;color:var(--faint);border-top:1px solid var(--rule);background:rgba(14,14,12,.78);z-index:4}
 .viewer figcaption b{color:var(--hl);font-weight:600;margin-right:6px}
 .ex-side{display:flex;flex-direction:column;background:var(--paper2)}
+.ex-link{float:right;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--rule2);background:transparent;color:var(--dim);padding:5px 8px;margin-top:-5px;cursor:pointer;min-height:28px}
+.ex-link:hover{color:var(--ink);border-color:var(--ink)}
+.ex-link.ok{color:var(--hl);border-color:var(--hl)}
 .ex-kick{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);padding:12px 16px 6px}
 .angles{display:flex;flex-direction:column;counter-reset:ang}
 .ang-btn{text-align:left;background:transparent;border:none;border-top:1px solid var(--rule);padding:clamp(7px,1.1vh,11px) 16px;cursor:pointer;font-family:'Lora',serif;color:var(--ink);transition:background .15s;counter-increment:ang;display:flex;flex-direction:column;gap:2px}
@@ -142,6 +148,28 @@ p.txt b{color:var(--ink);font-weight:600}
 .bb .tr b{position:absolute;top:-2px;width:3px;height:10px;transform:translateX(-1px)}
 .bb .vl{text-align:right;color:var(--ink)}
 .bio-lt{width:100%;height:auto;max-height:118px;display:block}
+.cmp-btn{margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--hl);background:transparent;color:var(--hl);padding:9px 10px;cursor:pointer;min-height:38px}
+.cmp-btn:hover,.cmp-btn[aria-expanded="true"]{background:var(--hl);color:var(--paper)}
+.ex-cmp{border-top:1px solid var(--rule);padding:16px clamp(16px,2.6vw,28px);background:var(--paper3)}
+.cmp-head{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.cmp-head b{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--hl)}
+.cmp-head span{font-size:.86em;color:var(--dim);line-height:1.5}
+.cmp-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.cmp-chips button{font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:6px 10px;border:1px solid var(--rule2);background:transparent;color:var(--dim);cursor:pointer;min-height:34px}
+.cmp-chips button.on{color:#0e0e0c;font-weight:600}
+.cmp-rows{display:flex;flex-direction:column;gap:9px}
+.cmp-row{display:grid;grid-template-columns:minmax(120px,240px) 1fr 70px;gap:12px;align-items:center;font-size:.86em;cursor:pointer}
+.cmp-row .an{font-family:'Playfair Display',serif;font-weight:700;line-height:1.25}
+.cmp-row.cur .an{color:var(--hl)}
+.cmp-row .tk{position:relative;height:18px;background:linear-gradient(90deg,rgba(143,184,170,.12),transparent 45%,transparent 55%,rgba(201,139,122,.16));border:1px solid var(--rule)}
+.cmp-row .tk::before{content:'';position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--faint)}
+.cmp-row .rg{position:absolute;top:6px;height:6px;border-radius:3px}
+.cmp-row .st{position:absolute;top:3px;width:12px;height:12px;border-radius:50%;transform:translateX(-6px);border:2px solid #0e0e0c}
+.cmp-row .en{position:absolute;top:1px;width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;transform:translateX(-5px)}
+.cmp-row .vv{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--dim);text-align:right;white-space:nowrap}
+.cmp-scale{display:grid;grid-template-columns:minmax(120px,240px) 1fr 70px;gap:12px;margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--faint);letter-spacing:.06em}
+.cmp-scale>div{display:flex;justify-content:space-between}
+@media(max-width:720px){.cmp-row{grid-template-columns:1fr;gap:4px}.cmp-row .vv{text-align:left}.cmp-scale{grid-template-columns:1fr}.cmp-scale>i{display:none}}
 .ex-detail{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(16px,2.4vw,30px);padding:clamp(16px,2.4vh,24px) clamp(16px,2.6vw,28px);border-top:1px solid var(--rule)}
 .ex-text{display:flex;flex-direction:column;gap:12px}
 .ex-text .head{font-size:clamp(0.9em,2.1vmin,1.03em);line-height:1.7}
@@ -203,6 +231,20 @@ table.bi td.st{color:var(--red)}
 table.bi td.sh{color:var(--cyan)}
 .tblwrap{overflow-x:auto}
 /* ===== QCM ===== */
+.qmode{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px}
+.qmode span{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-right:4px}
+.qmode button{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;border:1px solid var(--rule2);background:transparent;color:var(--dim);padding:7px 11px;cursor:pointer;min-height:36px}
+.qmode button.on{background:var(--hl);color:var(--paper);border-color:var(--hl)}
+.qmode .qreset{margin-left:auto;border-style:dashed}
+.rep.right{border-color:#4ADE80;color:#4ADE80}
+.rep.wrong{border-color:var(--red);color:var(--red);text-decoration:line-through}
+.rep[disabled]{cursor:default}
+.qfb{margin-top:12px;border-left:3px solid var(--red);background:var(--paper3);padding:10px 14px;font-size:.92em;line-height:1.6;color:var(--dim)}
+.qfb.good{border-left-color:#4ADE80}
+.qfb b{display:block;font-family:'IBM Plex Mono',monospace;font-size:.72em;letter-spacing:.16em;text-transform:uppercase;margin-bottom:3px;color:var(--ink)}
+.qfb strong{color:var(--ink)}
+.qlink{display:inline-block;margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--hl);text-decoration:none;border-bottom:1px solid var(--hl)}
+.corr .qlink{margin-top:6px}
 .qcm-meta{display:flex;justify-content:space-between;align-items:baseline;font-family:'IBM Plex Mono',monospace;font-size:clamp(0.6em,1.6vmin,0.74em);letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
 .qcm-meta b{color:var(--ink);font-weight:600}
 .qbar{height:3px;background:var(--rule);margin-top:6px}
@@ -269,6 +311,40 @@ table.bi td.sh{color:var(--cyan)}
  .kid{padding:12px 0}
  h2{font-size:1.4em}
 }
+/* ===== FICHE IMPRIMABLE ===== */
+.print-btn{align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--rule2);background:transparent;color:var(--dim);padding:9px 12px;cursor:pointer;min-height:38px}
+.print-btn:hover{color:var(--ink);border-color:var(--ink)}
+.print-btn[disabled]{opacity:.6;cursor:progress}
+#print-sheet{display:none}
+@media print{
+ @page{size:A4;margin:11mm 12mm}
+ html,body{height:auto!important;overflow:visible!important;background:#fff!important;color:#111!important}
+ body::after{display:none}
+ #app{display:none!important}
+ #print-sheet{display:block;font-family:'Lora',Georgia,serif;color:#111;font-size:9.6pt;line-height:1.42}
+ .ps-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2.5pt double #111;padding-bottom:4pt;margin-bottom:7pt}
+ .ps-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:17pt;letter-spacing:.04em}
+ .ps-brand i{font-weight:400}
+ .ps-meta{font-family:'IBM Plex Mono',monospace;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#555;text-align:right}
+ .ps-title{font-family:'Playfair Display',serif;font-weight:700;font-size:15pt;margin:2pt 0 4pt}
+ .ps-lead{color:#333;margin-bottom:6pt}
+ .ps-ess{border:1pt solid #999;border-top:2.5pt solid #111;padding:5pt 8pt;margin-bottom:8pt}
+ .ps-ess b.lb{font-family:'IBM Plex Mono',monospace;font-size:7pt;letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:2pt}
+ .ps-ess ul{margin:0;padding-left:12pt}.ps-ess li{margin:1pt 0}
+ .ps-ex{font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;border-bottom:1pt solid #111;margin:8pt 0 4pt;padding-bottom:2pt}
+ .ps-ang{display:grid;grid-template-columns:32% 1fr;gap:8pt;border-bottom:.6pt solid #bbb;padding:5pt 0;break-inside:avoid;page-break-inside:avoid}
+ .ps-ang img{width:100%;border:.6pt solid #999;background:#16150f}
+ .ps-ang h4{font-family:'Playfair Display',serif;font-size:10.5pt;margin:0}
+ .ps-ang .lab{font-family:'IBM Plex Mono',monospace;font-size:7pt;color:#555;margin-bottom:3pt}
+ .ps-ang .fib{margin:2pt 0}
+ .ps-ang .fib span{display:inline-block;border:.6pt solid #888;border-radius:1pt;padding:0 4pt;margin:0 2pt 2pt 0;font-family:'IBM Plex Mono',monospace;font-size:6.8pt}
+ .ps-ang .fib span.m{border-color:#111;font-weight:600}
+ .ps-ang .fp{font-size:8.4pt;color:#333;margin:2pt 0}
+ .ps-ang .fp b,.ps-ang .exl b{font-family:'IBM Plex Mono',monospace;font-size:6.6pt;letter-spacing:.12em;text-transform:uppercase}
+ .ps-ang ol{margin:1pt 0 0;padding-left:12pt;font-size:8.4pt}
+ .ps-recap{margin-top:7pt;border-top:2pt double #111;border-bottom:2pt double #111;padding:5pt 6pt;font-style:italic;text-align:center}
+ .ps-foot{margin-top:6pt;font-family:'IBM Plex Mono',monospace;font-size:6.6pt;color:#666;display:flex;justify-content:space-between}
+}
 /* ===== VOIX OFF ===== */
 .vo{display:flex;align-items:center;gap:12px;border:1px solid var(--rule2);border-left:3px solid var(--hl);background:var(--paper3);padding:10px 14px}
 .vo-play{width:40px;height:40px;flex:0 0 40px;border-radius:50%;border:1px solid var(--hl);background:transparent;color:var(--hl);cursor:pointer;font-size:13px}
@@ -279,6 +355,9 @@ table.bi td.sh{color:var(--cyan)}
 .vo-bar::after{content:'';position:absolute;inset:-10px 0}
 .vo-bar i{display:block;height:100%;width:0;background:var(--hl)}
 .vo-time{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--hl);white-space:nowrap}
+.vo-sl{display:flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);white-space:nowrap;cursor:pointer}
+.vo-sl input{accent-color:var(--hl);width:16px;height:16px}
+@media(max-width:720px){.vo{flex-wrap:wrap}.vo-meta{flex:1 1 calc(100% - 60px)}.vo-sl{order:5}}
 .vo-tx{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--rule2);background:transparent;color:var(--dim);padding:8px 10px;cursor:pointer;min-height:36px}
 .vo-tx:hover,.vo-tx[aria-expanded="true"]{color:var(--ink);border-color:var(--ink)}
 .vo-text{font-style:italic;color:var(--dim);line-height:1.7;font-size:clamp(.86em,2vmin,.98em);border-left:1px solid var(--rule2);padding:2px 0 2px 16px;max-width:75ch}
@@ -286,6 +365,7 @@ table.bi td.sh{color:var(--cyan)}
 </style>
 </head>
 <body>
+<div id="print-sheet" aria-hidden="true"></div>
 <div id="app">
 <nav id="topnav">
   <div id="masthead">
@@ -293,26 +373,29 @@ table.bi td.sh{color:var(--cyan)}
     <div id="logo">MUSCLES <b>à angles</b><sup>3D</sup></div>
     <div class="mh-sub">Le journal des faisceaux, des plans, des longueurs et des bras de levier</div>
   </div>
-  <div class="tabs" role="tablist">
-    <button class="tab on" data-s="0">Le concept</button>
-    <button class="tab" data-s="1">Le dos</button>
-    <button class="tab" data-s="2">Les pectoraux</button>
-    <button class="tab" data-s="3">Les épaules</button>
-    <button class="tab" data-s="5">Les bras</button>
-    <button class="tab" data-s="9">Avant-bras</button>
-    <button class="tab" data-s="10">Abdominaux</button>
-    <button class="tab" data-s="11">Fessiers</button>
-    <button class="tab" data-s="12">Cuisses</button>
-    <button class="tab" data-s="6">Ischios & mollets</button>
-    <button class="tab" data-s="8">Biomécanique</button>
-    <button class="tab" data-s="7">La science</button>
-    <button class="tab" data-s="4">QCM</button>
+  <div class="tabs" role="tablist" aria-label="Chapitres">
+    <button class="tab on" data-s="0" role="tab" id="tab-s0" aria-controls="s0" aria-selected="true">Concept</button>
+    <span class="tab-grp" aria-hidden="true">Muscles</span>
+    <button class="tab" data-s="1" role="tab" id="tab-s1" aria-controls="s1" aria-selected="false">Dos</button>
+    <button class="tab" data-s="2" role="tab" id="tab-s2" aria-controls="s2" aria-selected="false">Pectoraux</button>
+    <button class="tab" data-s="3" role="tab" id="tab-s3" aria-controls="s3" aria-selected="false">Épaules</button>
+    <button class="tab" data-s="5" role="tab" id="tab-s5" aria-controls="s5" aria-selected="false">Bras</button>
+    <button class="tab" data-s="9" role="tab" id="tab-s9" aria-controls="s9" aria-selected="false">Avant-bras</button>
+    <button class="tab" data-s="10" role="tab" id="tab-s10" aria-controls="s10" aria-selected="false">Abdominaux</button>
+    <button class="tab" data-s="11" role="tab" id="tab-s11" aria-controls="s11" aria-selected="false">Fessiers</button>
+    <button class="tab" data-s="12" role="tab" id="tab-s12" aria-controls="s12" aria-selected="false">Cuisses</button>
+    <button class="tab" data-s="6" role="tab" id="tab-s6" aria-controls="s6" aria-selected="false">Ischios & mollets</button>
+    <span class="tab-grp" aria-hidden="true">Comprendre</span>
+    <button class="tab" data-s="8" role="tab" id="tab-s8" aria-controls="s8" aria-selected="false">Biomécanique</button>
+    <button class="tab" data-s="7" role="tab" id="tab-s7" aria-controls="s7" aria-selected="false">Science</button>
+    <span class="tab-grp" aria-hidden="true">S'évaluer</span>
+    <button class="tab" data-s="4" role="tab" id="tab-s4" aria-controls="s4" aria-selected="false">QCM</button>
   </div>
 </nav>
 <div id="stage">
 
 <!-- ============ 0. CONCEPT ============ -->
-<section class="scene active" id="s0"><div class="wrap">
+<section class="scene active" id="s0" role="tabpanel" aria-labelledby="tab-s0"><div class="wrap">
   <div class="kicker">Chapitre 01 · Le concept</div>
   <h1>Un muscle, ce n'est pas un bloc. <em>C'est un éventail de fibres.</em></h1>
   <p class="lead drop">Certains muscles ont des faisceaux (des « chefs ») qui tirent dans des directions différentes, parce que leurs fibres partent d'os différents, sous des angles différents. Pour tout recruter, il faut faire varier l'angle de travail, et pas seulement la charge. Et comme la force d'un muscle dépend aussi de sa <b>longueur</b>, l'angle décide également de l'endroit où l'exercice est dur.</p>
@@ -380,10 +463,11 @@ table.bi td.sh{color:var(--cyan)}
 </div></section>
 
 <!-- ============ 1. DOS ============ -->
-<section class="scene" id="s1"><div class="wrap">
+<section class="scene" id="s1" role="tabpanel" aria-labelledby="tab-s1"><div class="wrap">
   <div class="kicker">Chapitre 02 · Le dos</div>
   <h2>Le dos — <em>l'éventail le plus vaste du corps</em></h2>
-  <div class="vo" data-vo="dos"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 41</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <div class="vo" data-vo="dos"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 50</span><label class="vo-sl" title="La voix pilote le schéma et les graphiques"><input type="checkbox" class="vo-sync" checked> Schéma synchronisé</label><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <button class="print-btn" type="button" data-sid="s1">Imprimer la fiche · PDF A4</button>
   <p class="lead">Le dos n'est pas un muscle mais une équipe : grand dorsal, trapèze (3 étages), grand rond, petit rond, rhomboïdes, deltoïde postérieur. Chacun répond à une direction de tir précise. <b>Change la hauteur de la poulie et la prise → change le faisceau dominant.</b></p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul><li>Direction du tir = faisceau dominant : <strong>vertical → grand dorsal</strong>, <strong>horizontal → trapèze moyen + rhomboïdes</strong>, <strong>bras tendus vers les cuisses (pull-over) → dorsal inférieur + trapèze inférieur</strong>.</li><li>Le dos bouge en deux temps : l'<strong>omoplate</strong> glisse (trapèze, rhomboïdes) puis le <strong>bras</strong> tire (dorsal, grand rond). Un tirage sans mouvement d'omoplate oublie la moitié des muscles.</li><li>Le <strong>deltoïde postérieur</strong> (oiseau, face pull) est le chaînon arrière le plus négligé — clé du dos en V et des épaules saines.</li></ul></div>
   <div class="anat">
@@ -396,10 +480,11 @@ table.bi td.sh{color:var(--cyan)}
 </div></section>
 
 <!-- ============ 2. PECTORAUX ============ -->
-<section class="scene" id="s2"><div class="wrap">
+<section class="scene" id="s2" role="tabpanel" aria-labelledby="tab-s2"><div class="wrap">
   <div class="kicker">Chapitre 03 · Les pectoraux</div>
   <h2>Les pectoraux — <em>3 étages, 3 inclinaisons</em></h2>
-  <div class="vo" data-vo="pec"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 29</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <div class="vo" data-vo="pec"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 29</span><label class="vo-sl" title="La voix pilote le schéma et les graphiques"><input type="checkbox" class="vo-sync" checked> Schéma synchronisé</label><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <button class="print-btn" type="button" data-sid="s2">Imprimer la fiche · PDF A4</button>
   <p class="lead">Le grand pectoral s'étale en éventail de la clavicule jusqu'aux côtes : portion <b>claviculaire</b> (haut), <b>sternale</b> (milieu), <b>abdominale</b> (bas). L'angle du banc décide qui travaille — dans le schéma, le banc incline tout le corps et le trajet des bras reste vertical, comme sur un vrai développé.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul><li><strong>L'angle du banc décide de l'étage</strong> : incliné 30–45° → portion claviculaire ; plat → sternale ; décliné / dips penché → abdominale.</li><li>Au-delà de <strong>45° d'inclinaison</strong>, le deltoïde antérieur prend le relais et le pec sort du mouvement.</li><li>Les <strong>dips buste penché</strong> alignent pic de résistance et pic d'étirement : le meilleur exercice du bas de poitrine.</li></ul></div>
   <div class="test"><b>Test express :</b> développe couché les pieds au sol, épaules serrées — sens la tension monter vers l'aisselle (sternal). Passe en incliné à 30° : la tension remonte vers la clavicule. C'est ton angle-mesureur.</div>
@@ -413,10 +498,11 @@ table.bi td.sh{color:var(--cyan)}
 </div></section>
 
 <!-- ============ 3. ÉPAULES ============ -->
-<section class="scene" id="s3"><div class="wrap">
+<section class="scene" id="s3" role="tabpanel" aria-labelledby="tab-s3"><div class="wrap">
   <div class="kicker">Chapitre 04 · Les épaules</div>
   <h2>Les épaules — <em>le muscle à angles par excellence, et ses gardiens</em></h2>
-  <div class="vo" data-vo="del"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 36</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <div class="vo" data-vo="del"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 41</span><label class="vo-sl" title="La voix pilote le schéma et les graphiques"><input type="checkbox" class="vo-sync" checked> Schéma synchronisé</label><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <button class="print-btn" type="button" data-sid="s3">Imprimer la fiche · PDF A4</button>
   <p class="lead">Le deltoïde coiffe la tête de l'humérus comme un capuchon à trois pans : <b>antérieur</b> (sur la clavicule), <b>moyen</b> (sur l'acromion), <b>postérieur</b> (sur l'épine de l'omoplate). Dessous, quatre petits muscles — la <b>coiffe des rotateurs</b> — plaquent la tête humérale dans la glène pendant que le deltoïde la soulève. Le schéma montre les deux couches, et les plans dans lesquels le bras se lève.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul>
     <li><strong>Le deltoïde EST un muscle à angles</strong> : 3 chefs qui tirent dans 3 plans — aucun exercice unique ne couvre les trois.</li>
@@ -435,10 +521,11 @@ table.bi td.sh{color:var(--cyan)}
 </div></section>
 
 <!-- ============ 5. BRAS ============ -->
-<section class="scene" id="s5"><div class="wrap">
+<section class="scene" id="s5" role="tabpanel" aria-labelledby="tab-s5"><div class="wrap">
   <div class="kicker">Chapitre 05 · Les bras</div>
   <h2>Les bras — <em>l'angle de l'épaule décide de la longue tête</em></h2>
-  <div class="vo" data-vo="bras"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 13</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <div class="vo" data-vo="bras"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 16</span><label class="vo-sl" title="La voix pilote le schéma et les graphiques"><input type="checkbox" class="vo-sync" checked> Schéma synchronisé</label><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <button class="print-btn" type="button" data-sid="s5">Imprimer la fiche · PDF A4</button>
   <p class="lead">Triceps et biceps sont biarticulaires : leurs longues têtes traversent l'épaule. Ce n'est pas la prise qui change le recrutement, c'est <b>la position de l'épaule</b> — et donc la longueur à laquelle travaille le muscle. Regarde la jauge « longue tête » pendant l'animation : elle change du tout au tout selon l'angle de l'épaule.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul><li>Ce n'est pas la prise mais <strong>la position de l'épaule</strong> qui décide : bras au-dessus de la tête = longue tête du triceps étirée ; bras derrière le buste = longue tête du biceps étirée.</li><li>Extension <strong>overhead : 1,5× plus d'hypertrophie</strong> de la longue tête (IRM, Maeo 2023) avec 34–39 % de charge en MOINS.</li><li>Le <strong>curl pupitre s'effondre en 2e moitié</strong> de mouvement (Oliveira 2009) : le curl incliné garde la tension sur toute l'amplitude.</li></ul></div>
   <div class="anat">
@@ -452,10 +539,11 @@ table.bi td.sh{color:var(--cyan)}
 </div></section>
 
 <!-- ============ 9. AVANT-BRAS ============ -->
-<section class="scene" id="s9"><div class="wrap">
+<section class="scene" id="s9" role="tabpanel" aria-labelledby="tab-s9"><div class="wrap">
   <div class="kicker">Chapitre 06 · Les avant-bras</div>
   <h2>Les avant-bras — <em>deux épicondyles, deux familles</em></h2>
-  <div class="vo" data-vo="avb"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 14</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <div class="vo" data-vo="avb"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 19</span><label class="vo-sl" title="La voix pilote le schéma et les graphiques"><input type="checkbox" class="vo-sync" checked> Schéma synchronisé</label><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <button class="print-btn" type="button" data-sid="s9">Imprimer la fiche · PDF A4</button>
   <p class="lead">L'avant-bras compte une vingtaine de muscles, mais pour l'entraînement trois groupes suffisent : les <b>fléchisseurs</b> du poignet, accrochés à la bosse interne du coude ; les <b>extenseurs</b>, accrochés à la bosse externe ; et le <b>brachioradial</b>, qui ne touche pas le poignet mais fléchit le coude. Le modèle fait tourner le radius autour de l'ulna : c'est la prono-supination, qui décide qui travaille au curl.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul>
     <li><strong>Paume vers le haut, poignet qui s'enroule</strong> → fléchisseurs ; <strong>paume vers le bas, dos de la main qui monte</strong> → extenseurs.</li>
@@ -473,10 +561,11 @@ table.bi td.sh{color:var(--cyan)}
 </div></section>
 
 <!-- ============ 10. ABDOMINAUX ============ -->
-<section class="scene" id="s10"><div class="wrap">
+<section class="scene" id="s10" role="tabpanel" aria-labelledby="tab-s10"><div class="wrap">
   <div class="kicker">Chapitre 07 · Les abdominaux</div>
   <h2>Les abdominaux — <em>enrouler, basculer, tourner, gainer</em></h2>
-  <div class="vo" data-vo="abs"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 54</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <div class="vo" data-vo="abs"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 56</span><label class="vo-sl" title="La voix pilote le schéma et les graphiques"><input type="checkbox" class="vo-sync" checked> Schéma synchronisé</label><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <button class="print-btn" type="button" data-sid="s10">Imprimer la fiche · PDF A4</button>
   <p class="lead">Le <b>grand droit</b> relie le pubis aux côtes en une longue bande verticale, coupée par des intersections tendineuses (les « carreaux »). Sur les côtés, les <b>obliques</b> croisent leurs fibres en X : l'externe descend vers l'avant, l'interne monte vers l'avant. Sous eux, le <b>transverse</b>, aux fibres horizontales, fait le tour du ventre comme une ceinture. Et derrière, de chaque côté de la colonne, le <b>carré des lombes</b> relie le bassin à la dernière côte. Dans le schéma, la colonne est articulée en deux segments, lombaire et thoracique, pour que tu voies qui se raccourcit selon que c'est le buste ou le bassin qui bouge.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul>
     <li>Le grand droit est <strong>un seul muscle</strong> : « abdos hauts / bas » est un débat ouvert, avec des différences faibles quand elles sont mesurées.</li>
@@ -495,10 +584,11 @@ table.bi td.sh{color:var(--cyan)}
 </div></section>
 
 <!-- ============ 11. FESSIERS ============ -->
-<section class="scene" id="s11"><div class="wrap">
+<section class="scene" id="s11" role="tabpanel" aria-labelledby="tab-s11"><div class="wrap">
   <div class="kicker">Chapitre 08 · Les fessiers</div>
   <h2>Les fessiers — <em>au-dessus ou sous l'axe de la hanche</em></h2>
-  <div class="vo" data-vo="fes"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 10</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <div class="vo" data-vo="fes"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 07</span><label class="vo-sl" title="La voix pilote le schéma et les graphiques"><input type="checkbox" class="vo-sync" checked> Schéma synchronisé</label><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <button class="print-btn" type="button" data-sid="s11">Imprimer la fiche · PDF A4</button>
   <p class="lead">Le <b>grand fessier</b> est l'un des plus volumineux muscles du corps, et il n'a pas une seule fonction : son <b>faisceau supérieur</b>, qui passe au-dessus de l'axe de la hanche, écarte la jambe ; son <b>faisceau inférieur</b>, plus bas, la ramène vers l'arrière. Dessous et sur le côté, le <b>moyen fessier</b> stabilise le bassin à chaque pas. Le schéma montre les trois, vus de derrière, et leur longueur selon l'exercice.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul>
     <li><strong>Extension de hanche</strong> (hip thrust, squat) → tout le grand fessier ; <strong>abduction</strong> (écarter la jambe) → moyen fessier + faisceau supérieur.</li>
@@ -516,10 +606,11 @@ table.bi td.sh{color:var(--cyan)}
 </div></section>
 
 <!-- ============ 12. CUISSES ============ -->
-<section class="scene" id="s12"><div class="wrap">
+<section class="scene" id="s12" role="tabpanel" aria-labelledby="tab-s12"><div class="wrap">
   <div class="kicker">Chapitre 09 · Les cuisses</div>
   <h2>Les cuisses — <em>quadriceps et adducteurs, un seul biarticulaire chacun</em></h2>
-  <div class="vo" data-vo="cuisses"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 23</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <div class="vo" data-vo="cuisses"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 19</span><label class="vo-sl" title="La voix pilote le schéma et les graphiques"><input type="checkbox" class="vo-sync" checked> Schéma synchronisé</label><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <button class="print-btn" type="button" data-sid="s12">Imprimer la fiche · PDF A4</button>
   <p class="lead">Le quadriceps a quatre chefs, mais un seul traverse la hanche : le <b>droit fémoral</b>. Les trois <b>vastes</b> ne dépendent que du genou. Côté interne, les <b>adducteurs</b> forment un groupe plus gros qu'on ne le croit, dont le <b>grand adducteur</b> a une partie qui se comporte comme un ischio. Même règle que partout : regarde quelle articulation bouge, et ce qu'elle fait à la longueur du muscle.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul>
     <li>Le <strong>squat</strong> fait grossir les vastes et les adducteurs, <strong>pas le droit fémoral</strong>, dont la longueur varie peu (Kubo 2019).</li>
@@ -542,10 +633,11 @@ table.bi td.sh{color:var(--cyan)}
 </div></section>
 
 <!-- ============ 6. JAMBES ============ -->
-<section class="scene" id="s6"><div class="wrap">
+<section class="scene" id="s6" role="tabpanel" aria-labelledby="tab-s6"><div class="wrap">
   <div class="kicker">Chapitre 10 · Ischios &amp; mollets</div>
   <h2>Ischios &amp; mollets — <em>hanche ou genou ? La question qui départage tout</em></h2>
-  <div class="vo" data-vo="jambes"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 16</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <div class="vo" data-vo="jambes"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · L'essentiel à retenir</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 25</span><label class="vo-sl" title="La voix pilote le schéma et les graphiques"><input type="checkbox" class="vo-sync" checked> Schéma synchronisé</label><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <button class="print-btn" type="button" data-sid="s6">Imprimer la fiche · PDF A4</button>
   <p class="lead">Ischios et mollets sont biarticulaires : selon que le mouvement part de la hanche ou du genou, ce ne sont pas les mêmes faisceaux qui dominent — et pour les mollets, l'IRM montre que l'angle du genou décide même de ce qui grossit.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul><li>Ischios : <strong>dominante hanche (RDL) → biceps fémoral</strong> ; dominante genou (nordic, leg curl) → semitendineux.</li><li>Le <strong>leg curl assis</strong> (hanche fléchie, ischios pré-étirés) fait plus grossir les ischios que le leg curl allongé (Maeo 2021).</li><li>Mollets : les gastrocnémius <strong>ne grossissent vraiment qu'en debout, genou tendu</strong> (+9 à 12 %) ; assis = soléaire.</li></ul></div>
   <div class="anat">
@@ -559,10 +651,10 @@ table.bi td.sh{color:var(--cyan)}
 </div></section>
 
 <!-- ============ 8. BIOMÉCANIQUE ============ -->
-<section class="scene" id="s8"><div class="wrap">
+<section class="scene" id="s8" role="tabpanel" aria-labelledby="tab-s8"><div class="wrap">
   <div class="kicker">Chapitre 11 · Biomécanique</div>
   <h2>Tension, longueur et bras de levier — <em>pourquoi l'angle change la force</em></h2>
-  <div class="vo" data-vo="bio"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · Les principes de l'hypertrophie</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 43</span><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
+  <div class="vo" data-vo="bio"><button class="vo-play" aria-label="Écouter la voix off">▶</button><div class="vo-meta"><span class="vo-lbl">Voix off · Les principes de l'hypertrophie</span><div class="vo-bar" role="slider" aria-label="Position dans la voix off" tabindex="0"><i></i></div></div><span class="vo-time">1 min 51</span><label class="vo-sl" title="La voix pilote le schéma et les graphiques"><input type="checkbox" class="vo-sync" checked> Schéma synchronisé</label><button class="vo-tx" aria-expanded="false">Texte</button></div><div class="vo-text" hidden></div>
   <p class="lead drop">Un muscle ne produit pas la même force à toutes les longueurs. Cette force dépend de ce qui se passe dans chacun de ses sarcomères, ces unités contractiles de quelques micromètres alignées par milliers dans chaque fibre. En face, l'exercice impose une demande qui varie avec le bras de levier. Ce chapitre relie les deux, du filament à la barre.</p>
   <div class="essentiel"><div class="lbl"><b>L'essentiel</b> · à lire en premier</div><ul>
     <li>La force active culmine sur un <strong>plateau de longueur optimale</strong> (chevauchement idéal actine-myosine) ; au-delà, la <strong>tension passive</strong> des tissus conjonctifs prend le relais.</li>
@@ -570,7 +662,7 @@ table.bi td.sh{color:var(--cyan)}
     <li>L'entraînement <strong>en longueur étirée</strong> produit le plus d'hypertrophie dans plusieurs études IRM — surtout pour les biarticulaires.</li>
   </ul></div>
 
-  <div class="card">
+  <div class="card" id="bio-i">
     <h3><span class="n">I</span> · La courbe tension-longueur du sarcomère</h3>
     <div class="two">
       <div>
@@ -586,7 +678,7 @@ table.bi td.sh{color:var(--cyan)}
     <p class="txt" style="margin-top:12px">Modèle schématique d'après Gordon, Huxley & Julian (1966), transposé aux longueurs de filaments humains (actine ≈ 1,3 µm, myosine ≈ 1,6 µm) : le plateau humain se situe autour de 2,6–2,8 µm. Dans un muscle entier, la courbe est plus arrondie (les sarcomères ne sont pas tous à la même longueur), mais la logique est identique.</p>
   </div>
 
-  <div class="card">
+  <div class="card" id="bio-ii">
     <h3><span class="n">II</span> · Capacité du muscle contre demande de l'exercice</h3>
     <div class="pill-row" id="dc-btns"></div>
     <div class="two">
@@ -628,7 +720,7 @@ table.bi td.sh{color:var(--cyan)}
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" id="bio-v">
     <h3><span class="n">V</span> · Force et vitesse</h3>
     <div class="two">
       <svg class="chart" viewBox="0 0 560 230">
@@ -654,7 +746,7 @@ table.bi td.sh{color:var(--cyan)}
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" id="bio-vi">
     <h3><span class="n">VI</span> · L'hypertrophie en longueur étirée : où en est la preuve ?</h3>
     <div class="exos refs">
       <div class="exo"><b>Ischios — leg curl assis vs allongé</b><span>Maeo et al. 2021 (Med Sci Sports Exerc, IRM) : hypertrophie des ischios plus grande au leg curl assis (hanche fléchie, ischios longs) qu'allongé, sur 12 semaines.</span></div>
@@ -669,7 +761,7 @@ table.bi td.sh{color:var(--cyan)}
 </div></section>
 
 <!-- ============ 7. SCIENCE ============ -->
-<section class="scene" id="s7"><div class="wrap">
+<section class="scene" id="s7" role="tabpanel" aria-labelledby="tab-s7"><div class="wrap">
   <div class="kicker">Chapitre 12 · La science</div>
   <h2>Ce que dit la science — <em>sources</em></h2>
   <p class="lead">Chaque affirmation du module repose sur des études publiées : EMG de surface, IRM (volume musculaire), échographie ou physiologie du muscle isolé. Les chiffres cités sont ceux des publications, jamais arrondis vers le haut.</p>
@@ -718,10 +810,10 @@ table.bi td.sh{color:var(--cyan)}
 </div></section>
 
 <!-- ============ 4. QCM ============ -->
-<section class="scene" id="s4"><div class="wrap">
+<section class="scene" id="s4" role="tabpanel" aria-labelledby="tab-s4"><div class="wrap">
   <div class="kicker">Chapitre 13 · Questionnaire</div>
   <h2>Le questionnaire — <em><span id="qcm-total">60</span> questions, 4 niveaux</em></h2>
-  <p class="lead">Quinze questions par niveau, du fondamental à la biomécanique. Réponds à tout : la correction des erreurs et le score n'apparaissent qu'à la fin de chaque niveau.</p>
+  <p class="lead">Quinze questions par niveau, du fondamental à la biomécanique. Deux modes : <b>examen</b>, la correction et le score arrivent à la fin du niveau ; <b>apprentissage</b>, chaque réponse est corrigée tout de suite. Tes réponses sont gardées sur cet appareil, et chaque erreur te renvoie vers le schéma qui l'explique.</p>
   <div class="card" id="qcm-app">
     <div class="levels" id="qcm-levels"></div>
     <div id="qcm-body"></div>
@@ -1010,14 +1102,16 @@ function buildExplorer(key){
   +'<div class="v-tools">'+views.map(function(v){return '<button data-v="'+v[0]+'">'+v[1]+'</button>';}).join('')
   +'<i></i><button class="on" data-tg="labels">Noms</button>'
   +(key==="del"?'<button class="on" data-tg="planes">Plans</button><button class="on" data-tg="cuff">Coiffe</button>':'')
-  +'<button data-tg="ghost">Os seuls</button></div>'
+  +'<button data-tg="iso" title="Ne montrer que les faisceaux moteurs, os en transparence">Isoler</button><button data-tg="ghost">Os seuls</button></div>'
   +'<div class="v-hover"></div><div class="v-hint">Glisser : tourner · Molette : zoom · Clic droit : déplacer</div>'
   +'<figcaption><b>'+host.dataset.fig+'</b>'+host.dataset.cap+'</figcaption></figure>'
-  +'<div class="ex-side"><div class="ex-kick">Choisis un angle</div><div class="angles" id="'+key+'-angles"></div>'
+  +'<div class="ex-side"><div class="ex-kick">Choisis un angle<button class="ex-link" type="button" title="Copier le lien direct vers cet angle">Lien de cet angle</button></div><div class="angles" id="'+key+'-angles"></div>'
   +'<div class="bio"><div class="bio-row"><button class="v-play" aria-label="Pause">❚❚</button><input class="v-amp" type="range" min="0" max="1000" value="0" aria-label="Amplitude du mouvement"><span class="v-ampv">0 %</span></div>'
   +'<div class="v-desc"></div>'
   +'<div class="bio-lbl">Longueur des faisceaux · vs repos</div><div class="bio-bars"></div>'
-  +'<div class="bio-lbl">Sur la courbe tension-longueur <em>(indicatif)</em></div><svg class="bio-lt" viewBox="0 0 260 96"></svg></div></div></div>'
+  +'<div class="bio-lbl">Sur la courbe tension-longueur <em>(indicatif)</em></div><svg class="bio-lt" viewBox="0 0 260 96"></svg>'
+  +'<button class="cmp-btn" type="button" aria-expanded="false">Comparer les angles</button></div></div></div>'
+  +'<div class="ex-cmp" hidden><div class="cmp-head"><b>Comparer les angles</b><span>Choisis un faisceau : chaque barre montre de quelle longueur à quelle longueur il travaille dans chaque angle, du début (point) à la fin (flèche) du mouvement.</span></div><div class="cmp-chips"></div><div class="cmp-rows"></div><div class="cmp-scale"><i></i><div><span>← raccourci</span><span>longueur de repos</span><span>étiré →</span></div><i></i></div></div>'
   +'<div class="ex-detail"><div class="ex-text"><div class="head" id="'+key+'-head"></div>'
   +'<div><div class="fib-lbl">Faisceaux recrutés</div><div class="fibers" id="'+key+'-fibers"></div><div class="legend-mini">plein = moteur · contour = partiel · pointillé = peu sollicité</div></div>'
   +'<div class="fpblock"><b>Position de force · couple résistant</b><span id="'+key+'-fp"></span></div></div>'
@@ -1028,7 +1122,8 @@ function buildExplorer(key){
   D.angles.forEach(function(a,i){
     var b=document.createElement("button");b.className="ang-btn"+(i===0?" on":"");
     b.innerHTML='<span class="deg">'+a.deg+'</span><span class="lab">'+a.lab+'</span>';
-    b.onclick=function(){box.querySelectorAll(".ang-btn").forEach(function(x){x.classList.remove("on")});b.classList.add("on");showAngle(key,i)};
+    b.onclick=function(){box.querySelectorAll(".ang-btn").forEach(function(x){x.classList.remove("on")});b.classList.add("on");showAngle(key,i);
+      var sc=host.closest(".scene");if(sc)setHash(SLUG[sc.id.slice(1)]+"/"+key+"-"+(i+1),true);};
     box.appendChild(b);
   });
   showAngle(key,0);
@@ -1066,20 +1161,73 @@ function drawMiniLT(svg){
   +'<g class="dots"></g>';
 }
 ["dos","pec","del","tri","bic","avb","abs","fes","quad","add","ham","calf"].forEach(buildExplorer);
+document.querySelectorAll(".ex-link").forEach(function(b){b.onclick=function(){
+  var host=b.closest(".explorer"),key=host.dataset.key,sc=host.closest(".scene"),url=location.href.split("#")[0]+"#"+SLUG[sc.id.slice(1)]+"/"+key+"-"+((window.CUR[key]||0)+1);
+  var done=function(){b.classList.add("ok");b.textContent="Lien copié";setTimeout(function(){b.classList.remove("ok");b.textContent="Lien de cet angle";},1800);};
+  if(navigator.share&&matchMedia("(pointer:coarse)").matches){navigator.share({title:document.title,url:url}).catch(function(){});}
+  else if(navigator.clipboard){navigator.clipboard.writeText(url).then(done,function(){prompt("Lien de cet angle :",url);});}
+  else prompt("Lien de cet angle :",url);};});
 setTimeout(function(){if(!window.__3d){document.querySelectorAll(".v-fallback").forEach(function(d){d.textContent="Le modèle 3D n'a pas pu se charger (connexion requise pour la bibliothèque Three.js, ou WebGL désactivé). Le texte, les faisceaux et les exercices restent disponibles ci-dessous.";});}},9000);
 
 /* ============ TABS ============ */
-function goTab(n){
+/* adresse : #chapitre ou #chapitre/explorateur-angle (ex. #epaules/del-4) — le bouton Retour revient au chapitre précédent */
+var SLUG={"0":"concept","1":"dos","2":"pectoraux","3":"epaules","5":"bras","9":"avant-bras","10":"abdominaux","11":"fessiers","12":"cuisses","6":"ischios-mollets","8":"biomecanique","7":"science","4":"qcm"};
+var SEC={};Object.keys(SLUG).forEach(function(k){SEC[SLUG[k]]=k;});
+var ROUTING=false;
+function setHash(h,replace){if(ROUTING||location.hash==="#"+h)return;try{history[replace?"replaceState":"pushState"](null,"","#"+h);}catch(e){}}
+function goTab(n,noHash){
+  n=String(n);
   if(window.pauseVO)pauseVO();
-  document.querySelectorAll(".tab").forEach(function(x){x.classList.toggle("on",x.dataset.s===String(n));});
+  if(!noHash)setHash(SLUG[n]);
+  document.querySelectorAll(".tab").forEach(function(x){var on=x.dataset.s===n;x.classList.toggle("on",on);x.setAttribute("aria-selected",on?"true":"false");});
   document.querySelectorAll(".scene").forEach(function(s){s.classList.remove("active")});
   var sc=document.getElementById("s"+n);sc.classList.add("active");sc.scrollTop=0;
   var on=document.querySelector('.tab.on');if(on&&on.scrollIntoView)on.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
 }
 document.querySelectorAll(".tab").forEach(function(t){t.onclick=function(){goTab(t.dataset.s);};});
+function route(){
+  var h=decodeURIComponent(location.hash.slice(1)).split("/"),n=SEC[h[0]];
+  if(n===undefined)n="0";
+  ROUTING=true;goTab(n,true);
+  var m=h[1]&&h[1].match(/^([a-z]+)-(\d+)$/);
+  if(m&&window[m[1].toUpperCase()]){var key=m[1],i=+m[2]-1,box=document.getElementById(key+"-angles");
+    if(box&&box.children[i]){box.children[i].click();var ex=document.querySelector('.explorer[data-key="'+key+'"]');
+      setTimeout(function(){var sc=document.getElementById("s"+n);sc.scrollTop=ex.offsetTop-12;},60);}}
+  ROUTING=false;
+}
+window.addEventListener("popstate",route);
+window.addEventListener("hashchange",route);
 document.querySelectorAll(".toc button").forEach(function(b){b.onclick=function(){goTab(b.dataset.go);};});
 
+/* ============ FICHE IMPRIMABLE ============ */
+function escH(t){return String(t).replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+async function printSheet(sid,btn){
+  var sc=document.getElementById(sid),title=sc.querySelector("h2").textContent,lead=sc.querySelector("p.lead"),ess=sc.querySelector(".essentiel ul"),recap=sc.querySelector(".recap");
+  btn.disabled=true;var old=btn.textContent;btn.textContent="Préparation de la fiche…";
+  var html='<div class="ps-head"><div class="ps-brand">MUSCLES <i>à angles</i></div><div class="ps-meta">Fiche muscle · '+escH(sc.querySelector(".kicker").textContent)+'</div></div>'
+   +'<div class="ps-title">'+escH(title)+'</div>'+(lead?'<div class="ps-lead">'+lead.innerHTML+'</div>':'')
+   +(ess?'<div class="ps-ess"><b class="lb">L\'essentiel</b><ul>'+ess.innerHTML+'</ul></div>':'');
+  var exs=sc.querySelectorAll(".explorer");
+  for(var e=0;e<exs.length;e++){
+    var key=exs[e].dataset.key,D=window[key.toUpperCase()],v=window.__ensureViewer?await window.__ensureViewer(key):null;
+    html+='<div class="ps-ex">'+escH(exs[e].dataset.fig+" — "+exs[e].dataset.cap)+'</div>';
+    for(var i=0;i<D.angles.length;i++){var a=D.angles[i],img=v?v.snapshot(i):"";
+      html+='<div class="ps-ang"><div>'+(img?'<img alt="" src="'+img+'">':'')+'</div><div><h4>'+escH(a.deg)+'</h4><div class="lab">'+escH(a.lab)+'</div>'
+       +'<div class="fib">'+a.hit.map(function(f){return '<span class="m">'+escH(D.fibers[f])+'</span>';}).join('')+a.partial.map(function(f){return '<span>'+escH(D.fibers[f])+'</span>';}).join('')+'</div>'
+       +'<div class="fp"><b>Point dur · </b>'+a.fp+'</div>'
+       +'<div class="exl"><b>Exercices</b><ol>'+a.exos.map(function(x){return '<li><strong>'+escH(x[0])+'</strong> — '+escH(x[1])+'</li>';}).join('')+'</ol></div></div></div>';}
+  }
+  html+=(recap?'<div class="ps-recap">'+recap.innerHTML+'</div>':'')
+   +'<div class="ps-foot"><span>'+escH(location.href.split("#")[0]+"#"+SLUG[sid.slice(1)])+'</span><span>Modèle pédagogique · longueurs indicatives</span></div>';
+  var ps=document.getElementById("print-sheet");ps.innerHTML=html;
+  var imgs=ps.querySelectorAll("img");await Promise.all([].map.call(imgs,function(im){return im.complete?0:new Promise(function(r){im.onload=im.onerror=r;});}));
+  btn.disabled=false;btn.textContent=old;
+  window.print();
+}
+document.querySelectorAll(".print-btn").forEach(function(b){b.onclick=function(){printSheet(b.dataset.sid,b);};});
+
 /* ============ VOIX OFF ============ */
+var VOCUES={"dos": [[13.56, {"a": ["dos", 0]}], [20.04, {"sp": ["dos", 0]}], [24.58, {"a": ["dos", 1]}], [32.67, {"sp": ["dos", 5]}], [38.11, {"a": ["dos", 2]}], [46.92, {"sp": ["dos", 1]}], [54.69, {"a": ["dos", 3]}], [63.04, {"sp": ["dos", 8]}], [70.51, {"a": ["dos", 1]}]], "pec": [[12.61, {"a": ["pec", 0]}], [17.24, {"sp": ["pec", 0]}], [26.45, {"a": ["pec", 1]}], [29.23, {"sp": ["pec", 1]}], [35.07, {"a": ["pec", 2]}], [40.83, {"sp": ["pec", 2]}]], "del": [[7.64, {"a": ["del", 0]}], [11.68, {"a": ["del", 1]}], [15.84, {"a": ["del", 2]}], [25.1, {"sp": ["del", 0]}], [40.28, {"a": ["del", 1]}], [49.72, {"a": ["del", 2]}], [59.31, {"a": ["del", 4]}], [83.4, {"a": ["del", 1]}], [91.09, {"a": ["del", 3]}]], "bras": [[17.3, {"a": ["tri", 0]}], [33.88, {"a": ["tri", 1]}], [42.7, {"a": ["bic", 0]}], [54.43, {"a": ["bic", 2]}]], "avb": [[7.91, {"a": ["avb", 0]}], [18.94, {"a": ["avb", 1]}], [29.97, {"a": ["avb", 2]}], [42.13, {"a": ["avb", 3]}], [52.08, {"a": ["avb", 2]}], [54.72, {"a": ["avb", 3]}]], "abs": [[13.31, {"a": ["abs", 0]}], [17.34, {"a": ["abs", 1]}], [34.53, {"a": ["abs", 2]}], [54.27, {"a": ["abs", 3]}], [89.07, {"a": ["abs", 4]}]], "fes": [[3.1, {"sp": ["fes", 0]}], [9.36, {"sp": ["fes", 1]}], [15.97, {"sp": ["fes", 2]}], [21.1, {"a": ["fes", 0]}], [40.13, {"a": ["fes", 2]}], [55.46, {"a": ["fes", 1]}]], "cuisses": [[15.07, {"a": ["quad", 2]}], [29.2, {"a": ["quad", 1]}], [52.21, {"a": ["add", 0]}], [66.19, {"a": ["add", 2]}]], "jambes": [[14.32, {"a": ["ham", 0]}], [23.59, {"a": ["ham", 1]}], [35.07, {"a": ["ham", 2]}], [52.32, {"a": ["calf", 0]}], [58.9, {"a": ["calf", 1]}]], "bio": [[8.77, {"go": "#bio-i"}], [12.64, {"sar": 272}], [19.89, {"sar": 150}], [24.35, {"sar": 390}], [30.43, {"go": "#bio-ii", "dc": 0}], [48.53, {"dc": 1}], [56.39, {"go": "#bio-vi"}], [100.32, {"go": "#bio-v"}]]};
 var VO={"dos": "Le dos n'est pas un muscle : c'est une équipe. Et la règle à retenir est simple : la direction du tirage décide du faisceau qui travaille. Tirage vertical : le coude plie, le bras descend sur le côté. C'est le grand dorsal qui mène, aidé du grand rond. Tirage horizontal, à hauteur de poitrine : les omoplates se pincent. Ce sont le trapèze moyen et les rhomboïdes, l'épaisseur du dos. Pull-over, bras tendus, de la tête jusqu'aux cuisses : le coude ne plie pas, c'est la partie basse du grand dorsal, avec le trapèze inférieur qui abaisse l'omoplate. Et rowing buste penché, coudes ouverts : le coude passe derrière le dos. Là, ce sont le deltoïde postérieur et le trapèze moyen. Deuxième point clé : le dos bouge en deux temps. L'omoplate glisse, puis le bras tire. Un tirage où les omoplates restent figées oublie la moitié des muscles. Laisse-les s'écarter au début du mouvement, c'est leur position étirée, puis ramène-les. Sur une semaine, trois directions suffisent : un tirage vertical, un tirage horizontal, et un travail du chaînon arrière.", "pec": "Le grand pectoral s'ouvre en éventail, de la clavicule jusqu'aux côtes. Trois étages, trois inclinaisons de banc. Banc incliné, entre trente et quarante-cinq degrés : c'est la portion claviculaire, le haut de la poitrine. Au-delà de quarante-cinq degrés, l'épaule prend le relais. Banc plat : la portion sternale, la plus massive, celle qui fait le volume. Développé décliné, ou dips buste penché : la portion abdominale, le bas de la poitrine. Pourquoi l'angle compte autant ? Parce que le tendon du pectoral est torsadé : les fibres du bas s'insèrent le plus haut sur le bras. Chaque étage tire donc dans sa propre direction. Dernier point : la position basse, poitrine étirée, est la plus productive. Aux dips penchés, le pic de résistance tombe pile sur le pic d'étirement. C'est ce qui en fait le meilleur exercice du bas de poitrine. Ne raccourcis pas cette phase.", "del": "Le deltoïde coiffe l'épaule avec trois chefs, qui tirent dans trois plans différents. L'antérieur lève le bras vers l'avant. Le moyen l'écarte sur le côté. Le postérieur le ramène vers l'arrière. Aucun exercice ne couvre les trois. L'antérieur travaille déjà dans tous tes développés : c'est rarement lui qu'il faut ajouter. Le moyen, celui de la largeur d'épaules, ne domine dans aucun développé : l'écarté latéral est irremplaçable. Et le postérieur est le chaînon faible chez presque tout le monde. Oiseau, face pull : c'est lui qu'il faut aller chercher. Sous le deltoïde, quatre petits muscles forment la coiffe des rotateurs. Pendant que le deltoïde soulève le bras, ils plaquent la tête de l'humérus contre l'articulation. Les rotations externes les entretiennent. Enfin, le bras ne se lève jamais seul : au-delà de trente degrés, l'omoplate bascule avec lui. Si ton épaule est sensible, lève le bras dans le plan de l'omoplate, légèrement devant toi, en V. C'est la trajectoire la mieux tolérée.", "bras": "Pour le biceps comme pour le triceps, ce n'est pas la prise qui change le recrutement : c'est la position de l'épaule. La longue tête de ces deux muscles traverse l'épaule. Sa longueur dépend donc de l'angle du bras. Bras au-dessus de la tête, la longue tête du triceps est étirée. Dans une étude par IRM, l'extension au-dessus de la tête l'a fait grossir une fois et demie plus que l'extension bras le long du corps, avec une charge pourtant plus légère. Pour le biceps, c'est l'inverse. Bras derrière le buste, sur un banc incliné, la longue tête part étirée, et l'activation reste forte sur toute l'amplitude. Au pupitre, l'épaule est fléchie : la longue tête travaille courte, et la seconde moitié du mouvement n'est presque plus chargée. Retiens la règle : place d'abord l'épaule pour étirer le muscle, puis travaille le coude.", "avb": "L'avant-bras compte une vingtaine de muscles, mais pour t'entraîner, trois groupes suffisent. Les fléchisseurs du poignet partent de la bosse interne du coude. Paume vers le haut, poignet qui s'enroule : ce sont eux. Les extenseurs partent de la bosse externe. Paume vers le bas, dos de la main qui monte : ce sont eux. Et le brachioradial, qui ne touche pas le poignet : c'est un fléchisseur du coude. Il se travaille au curl marteau ou au curl en pronation, pas au curl poignet. Ce qui décide, c'est la rotation de l'avant-bras. Pouce vers le haut ou paume vers le bas, le brachioradial prend une plus grande part du travail. Dernière chose : la poigne limite souvent le soulevé de terre et les tirages avant les dorsaux. La travailler directement, c'est gagner des répétitions partout ailleurs.", "abs": "La sangle abdominale, ce n'est pas que le grand droit. Elle compte quatre étages, et chacun a son mouvement. Le grand droit relie le pubis aux côtes. Au crunch, le buste s'enroule vers le bassin. Au relevé de genoux, c'est le bassin qui bascule vers les côtes. Attention : lever les jambes, c'est d'abord le travail des fléchisseurs de hanche. Le grand droit ne travaille que quand le bassin bascule. Sur les côtés, les obliques croisent leurs fibres en X. Pour tourner le buste vers la gauche, c'est l'oblique externe droit et l'oblique interne gauche, ensemble. En dessous, le plus important et le plus oublié : le transverse. Ses fibres sont horizontales, il fait le tour du ventre comme une ceinture. Il ne fléchit pas le tronc, donc le crunch ne le cible pas. Il rentre le nombril, serre la taille, et rigidifie la colonne avant même que tes bras ou tes jambes bougent. Aspiration abdominale, planche ventre rentré, dead bug : c'est lui. Enfin, derrière, le carré des lombes relie le bassin à la dernière côte. Il incline le buste sur le côté, et surtout, il t'empêche de pencher quand tu portes une charge d'une main. Retiens-le : au quotidien, ta sangle sert d'abord à résister au mouvement. Ajoute toujours ce travail à côté des enroulements.", "fes": "Le grand fessier n'a pas une seule fonction. Son faisceau supérieur, qui passe au-dessus de l'axe de la hanche, écarte la jambe. Son faisceau inférieur, plus bas, la ramène vers l'arrière. Et sur le côté, le moyen fessier stabilise ton bassin à chaque pas. Pour l'extension de hanche, hip thrust et squat font grossir les fessiers autant l'un que l'autre, même si le hip thrust brûle davantage. Ce qui change, c'est la longueur : le hip thrust charge le fessier en position courte, le squat profond le charge étiré. Et la profondeur compte vraiment : le squat complet fait environ trois fois plus grossir le grand fessier que le demi-squat. Pour l'abduction, écarter la jambe, c'est le moyen fessier et le faisceau supérieur. Un exercice de chaque famille, et tout le fessier est couvert.", "cuisses": "Le quadriceps a quatre chefs, mais un seul traverse la hanche : le droit fémoral. Les trois vastes ne dépendent que du genou. Conséquence directe : le squat fait grossir les vastes, mais très peu le droit fémoral, dont la longueur change à peine pendant le mouvement. Pour le cibler, il faut l'étirer : leg extension avec le dossier incliné vers l'arrière, ou sissy squat, hanche ouverte et genou fléchi. Et tourner les pieds pour viser le vaste interne, c'est un mythe : seule la profondeur change un peu sa part. Côté interne, les adducteurs forment un groupe plus gros qu'on ne le croit. Le grand adducteur a même une partie qui se comporte comme un ischio : c'est un extenseur de hanche, qui travaille au squat profond et au squat sumo. Même règle que partout : regarde quelle articulation bouge, et ce qu'elle fait à la longueur du muscle.", "jambes": "Ischios et mollets traversent deux articulations. La question qui départage tout, c'est : hanche ou genou ? Pour les ischios, quand le mouvement part de la hanche, comme au soulevé de terre roumain, c'est le biceps fémoral qui domine. Quand il part du genou, comme au leg curl ou au nordic, ce sont les faisceaux internes. Et si tu ne devais garder qu'un exercice d'isolation : le leg curl assis. Hanche fléchie, les ischios sont déjà étirés, et ils grossissent davantage qu'au leg curl allongé. Pour les mollets, c'est l'angle du genou qui décide. Debout, genou tendu, les gastrocnémiens sont étirés et grossissent. Assis, genou fléchi, ils sont détendus : c'est le soléaire qui travaille. Le mollet assis n'est donc pas un doublon du debout, c'est un autre muscle. Et la position des pieds, pointes en dedans ou en dehors, ne change rien. Seul le genou compte.", "bio": "Trois principes expliquent presque tout ce qui fait grossir un muscle selon l'angle. Premier principe : la tension dépend de la longueur. Un muscle est le plus fort à mi-longueur, quand ses filaments se chevauchent idéalement. Très raccourci, il n'a presque plus de force. Très étiré, ce sont les tissus élastiques qui prennent le relais. Deuxième principe : la difficulté d'un exercice ne vient pas du poids, mais du bras de levier. Le point dur, c'est l'endroit où la demande dépasse le plus ce que le muscle peut fournir. Il change selon l'outil : haltère, poulie ou machine. Troisième principe : charger le muscle en position étirée est ce qui produit le plus d'hypertrophie dans plusieurs études par IRM, surtout pour les muscles qui traversent deux articulations. Extension au-dessus de la tête, leg curl assis, mollets debout talons bas. Attention : étiré ne veut pas dire douloureux, et l'amplitude complète reste la base. L'idée, c'est de ne jamais raccourcir la phase étirée par confort. Et rappelle-toi qu'en freinant la charge, tu es plus fort qu'en la montant : contrôle toujours la descente."};
 (function(){
   var cur=null;
@@ -1098,6 +1246,20 @@ var VO={"dos": "Le dos n'est pas un muscle : c'est une équipe. Et la règle à 
     bar.addEventListener("click",seek);
     bar.addEventListener("keydown",function(e){var x=audio();if(!x.duration)return;if(e.key==="ArrowRight")x.currentTime=Math.min(x.duration,x.currentTime+5);if(e.key==="ArrowLeft")x.currentTime=Math.max(0,x.currentTime-5);});
     tx.onclick=function(){var open=txt.hidden;txt.hidden=!open;tx.setAttribute("aria-expanded",String(open));};
+    /* synchronisation : pendant la lecture, la voix pilote le schéma (angle, faisceau mis en avant, graphiques) */
+    var sync=box.querySelector(".vo-sync"),cues=VOCUES[k]||[],ci=0,raf=0,lastEx=null;
+    function act(c,quiet){var x=c[1];
+      if(x.a){var bx=document.getElementById(x.a[0]+"-angles"),bt=bx&&bx.children[x.a[1]];if(bt&&!bt.classList.contains("on"))bt.click();
+        var ex=document.querySelector('.explorer[data-key="'+x.a[0]+'"]');if(!quiet&&ex&&ex!==lastEx){lastEx=ex;var sc=ex.closest(".scene"),r=ex.getBoundingClientRect(),sr=sc.getBoundingClientRect();if(r.top<sr.top||r.top>sr.top+sr.height*.45)sc.scrollTo({top:sc.scrollTop+r.top-sr.top-12,behavior:"smooth"});}}
+      if(x.sp&&window.__spot)window.__spot(x.sp[0],x.sp[1]);
+      if(x.sar!==undefined){var sl=document.getElementById("sar-sl");if(sl){sl.value=x.sar;sl.dispatchEvent(new Event("input"));}}
+      if(x.dc!==undefined){var pb=document.querySelectorAll("#dc-btns .pill")[x.dc];if(pb)pb.click();}
+      if(x.go&&!quiet){var el=document.querySelector(x.go);if(el){var sc2=el.closest(".scene"),r2=el.getBoundingClientRect(),s2=sc2.getBoundingClientRect();sc2.scrollTo({top:sc2.scrollTop+r2.top-s2.top-12,behavior:"smooth"});}}}
+    function resync(){var ct=a.currentTime;ci=0;while(ci<cues.length&&cues[ci][0]<=ct)ci++;
+      var seen={};for(var j=ci-1;j>=0;j--){var x=cues[j][1],t=x.a?"a"+x.a[0]:x.sar!==undefined?"sar":x.dc!==undefined?"dc":null;if(t&&!seen[t]){seen[t]=1;act(cues[j],true);}}}
+    function loop(){if(!a||a.paused)return;if(sync.checked){var ct=a.currentTime;while(ci<cues.length&&cues[ci][0]<=ct){act(cues[ci]);ci++;}}raf=requestAnimationFrame(loop);}
+    btn.addEventListener("click",function(){if(a&&!a.paused){if(!a._wired){a._wired=1;a.addEventListener("seeked",resync);a.addEventListener("play",function(){resync();cancelAnimationFrame(raf);loop();});a.addEventListener("ended",function(){ci=0;lastEx=null;});}
+      resync();cancelAnimationFrame(raf);loop();}});
     box._pause=function(){if(a&&!a.paused){a.pause();box.classList.remove("on");btn.textContent="▶";}};
   });
   window.pauseVO=function(){document.querySelectorAll(".vo").forEach(function(b){b._pause&&b._pause();});};
@@ -1339,44 +1501,72 @@ var QCM=[
 {q:"Poing serré, poignet fléchi au maximum : pourquoi la force chute-t-elle ?",a:["Les extenseurs sont fatigués","Les fléchisseurs des doigts sont trop raccourcis : insuffisance active","La circulation est coupée"],ok:1,
  fb:["Les extenseurs sont au contraire étirés dans cette position.","Exact : biarticulaires (poignet + doigts), ils n'ont plus de longueur pour produire de la force.","C'est une affaire de longueur des sarcomères, pas d'irrigation."]}
 ]];
-var lvl=0,answers=QCM.map(function(l){return l.map(function(){return null;});});
+/* moteur QCM : mode examen (correction à la fin) ou apprentissage (correction immédiate), progression sauvegardée */
+var lvl=0,mode="exam",answers=QCM.map(function(l){return l.map(function(){return null;});});
+var QKEY="muscles-angles-qcm-v1";
+function qSave(){try{localStorage.setItem(QKEY,JSON.stringify({a:answers,i:QCM.map(function(l){return l._i||0;}),lvl:lvl,mode:mode}));}catch(e){}}
+(function(){try{var d=JSON.parse(localStorage.getItem(QKEY)||"null");if(!d)return;
+  if(d.a&&d.a.length===QCM.length&&d.a.every(function(l,k){return l.length===QCM[k].length;}))answers=d.a;
+  if(d.i)d.i.forEach(function(v,k){if(QCM[k])QCM[k]._i=Math.min(v,QCM[k].length-1);});
+  if(typeof d.lvl==="number"&&QCM[d.lvl])lvl=d.lvl;if(d.mode==="learn")mode="learn";}catch(e){}})();
 document.getElementById("qcm-total").textContent=QCM.reduce(function(s,l){return s+l.length;},0);
 var lvBox=document.getElementById("qcm-levels");
-LV.forEach(function(n,i){var b=document.createElement("button");b.className="lvl"+(i===0?" on":"");b.dataset.q=i;b.textContent=n;b.onclick=function(){setLvl(i);};lvBox.appendChild(b);});
+LV.forEach(function(n,i){var b=document.createElement("button");b.className="lvl";b.dataset.q=i;b.textContent=n;b.onclick=function(){setLvl(i);};lvBox.appendChild(b);});
+var mBox=document.createElement("div");mBox.className="qmode";mBox.innerHTML='<span>Mode</span><button data-m="exam">Examen · correction à la fin</button><button data-m="learn">Apprentissage · correction immédiate</button><button class="qreset" title="Effacer toutes tes réponses">Tout effacer</button>';
+lvBox.parentNode.insertBefore(mBox,lvBox);
+mBox.querySelectorAll("[data-m]").forEach(function(b){b.onclick=function(){mode=b.dataset.m;syncMode();qSave();renderQ();};});
+mBox.querySelector(".qreset").onclick=function(){if(!confirm("Effacer toutes tes réponses aux 4 niveaux ?"))return;answers=QCM.map(function(l){return l.map(function(){return null;});});QCM.forEach(function(l){l._i=0;});qSave();renderQ();};
+function syncMode(){mBox.querySelectorAll("[data-m]").forEach(function(b){b.classList.toggle("on",b.dataset.m===mode);});}
+/* question → angle du schéma qui l'illustre (première règle qui correspond) */
+var QLINK=[[/mollet ASSIS/i,"ischios-mollets/calf-2"],[/relevé de genoux/i,"abdominaux/abs-2"],[/hip thrust|Plotkin/i,"fessiers/fes-1"],[/Kubo 2019|squat complet/i,"fessiers/fes-3"],[/Au squat, pourquoi le droit fémoral/i,"cuisses/quad-3"],[/leg extension|Larsen/i,"cuisses/quad-2"],[/Poing serré/i,"avant-bras/avb-1"],[/exercices « en longueur/i,"biomecanique"],[/VMO/,"cuisses/quad-3"],[/curl poignet/i,"avant-bras/avb-1"],[/gracile/i,"cuisses/add-1"],[/grand adducteur/i,"cuisses/add-3"],[/quadriceps traversent|chefs du quadriceps/i,"cuisses/quad-2"],[/Tourner le buste|buste vers la GAUCHE/i,"abdominaux/abs-3"],[/^RDL/,"ischios-mollets/ham-1"],[/penné|fusiforme/i,"biomecanique"],[/plan de l'omoplate|scaption/i,"epaules/del-4"],[/coiffe des rotateurs/i,"epaules/del-5"],[/chef POSTÉRIEUR|face pull/i,"epaules/del-3"],[/écarté LATÉRAL|écarté latéral/i,"epaules/del-2"],[/deltoïde|overhead est|développé overhead|rythme scapulo/i,"epaules/del-1"],
+ [/incliné dépasse|HAUT des pectoraux|incliné :|portion claviculaire/i,"pectoraux/pec-1"],[/COUCHÉ/i,"pectoraux/pec-2"],[/DIPS/i,"pectoraux/pec-3"],
+ [/tirage VERTICAL/i,"dos/dos-1"],[/tirage HORIZONTAL|trapèze/i,"dos/dos-2"],
+ [/triceps|overhead|Maeo 2023 \(triceps/i,"bras/tri-1"],[/curl INCLINÉ/i,"bras/bic-1"],[/PUPITRE|prêcheur|pupitre/i,"bras/bic-3"],[/MARTEAU/i,"avant-bras/avb-3"],
+ [/mollet|gastrocnémius|soléaire/i,"ischios-mollets/calf-1"],[/leg curl ASSIS|leg curl assis/i,"ischios-mollets/ham-3"],[/nordic/i,"ischios-mollets/ham-2"],[/roumain|biceps fémoral|ischio/i,"ischios-mollets/ham-1"],
+ [/VMO|droit fémoral|Pedrosa/i,"cuisses/quad-2"],[/fessier/i,"fessiers/fes-2"],[/abdos|grand droit/i,"abdominaux/abs-1"],
+ [/sarcomère|tension|pennation|excentrique|point dur|insuffisance|force/i,"biomecanique"],[/muscle biarticulaire|DEUX mécanismes/i,"concept"]];
+function qLink(q){for(var k=0;k<QLINK.length;k++)if(QLINK[k][0].test(q.q))return '<a class="qlink" href="#'+QLINK[k][1]+'">Revoir dans le schéma →</a>';return "";}
 var GRADE=['à revoir','correct','solide','excellent'];
 function grade(g,n){return GRADE[Math.min(3,Math.floor(g/n*4))];}
 function renderQ(){
- var box=document.getElementById("qcm-body"),qs=QCM[lvl],cur=qs._i||0,picked=answers[lvl][cur],total=qs.length;
- box.innerHTML='<div class="qcm-meta"><span>Niveau '+(lvl+1)+' / '+QCM.length+' · question <b>'+(cur+1)+'</b> / '+total+'</span><span>'+LV[lvl]+'</span></div>'
- +'<div class="qbar"><i style="width:'+(cur/total*100)+'%"></i></div>'
- +'<div class="q">'+qs[cur].q+'</div>'
- +'<div class="reps">'+qs[cur].a.map(function(t,i){return '<button class="rep'+(picked===i?' picked':'')+'" data-i="'+i+'">'+String.fromCharCode(65+i)+'. '+t+'</button>';}).join('')+'</div>'
+ syncMode();document.querySelectorAll(".lvl").forEach(function(x){x.classList.toggle("on",+x.dataset.q===lvl);});
+ var box=document.getElementById("qcm-body"),qs=QCM[lvl],cur=qs._i||0,q=qs[cur],picked=answers[lvl][cur],total=qs.length,learn=mode==="learn",locked=learn&&picked!==null;
+ var done=answers[lvl].filter(function(a){return a!==null;}).length;
+ var fbHtml="";
+ if(locked){var ok=picked===q.ok;fbHtml='<div class="qfb '+(ok?"good":"bad")+'"><b>'+(ok?"✓ Bonne réponse":"✗ Pas tout à fait")+'</b>'+(ok?q.fb[q.ok]:q.fb[picked]+' <br><i>Bonne réponse :</i> <strong>'+q.a[q.ok]+'</strong>. '+q.fb[q.ok])+(ok?"":qLink(q))+'</div>';}
+ box.innerHTML='<div class="qcm-meta"><span>Niveau '+(lvl+1)+' / '+QCM.length+' · question <b>'+(cur+1)+'</b> / '+total+'</span><span>'+done+' répondue'+(done>1?'s':'')+'</span></div>'
+ +'<div class="qbar"><i style="width:'+(done/total*100)+'%"></i></div>'
+ +'<div class="q">'+q.q+'</div>'
+ +'<div class="reps">'+q.a.map(function(t,i){var c="rep";if(locked){if(i===q.ok)c+=" right";else if(i===picked)c+=" wrong";}else if(picked===i)c+=" picked";
+   return '<button class="'+c+'" data-i="'+i+'"'+(locked?' disabled':'')+'>'+String.fromCharCode(65+i)+'. '+t+'</button>';}).join('')+'</div>'
+ +fbHtml
  +'<div class="btnrow" style="margin-top:14px;justify-content:space-between">'
  +'<button class="qbtn" id="q-prev"'+(cur===0?' disabled':'')+'>← Précédent</button>'
- +(answers[lvl].every(function(a){return a!==null;})&&cur===total-1?'<button class="qbtn solid" id="q-fin">Terminer & corriger</button>':'<button class="qbtn" id="q-next"'+(picked===null?' disabled':'')+'>Suivant →</button>')
+ +(answers[lvl].every(function(a){return a!==null;})&&cur===total-1?'<button class="qbtn solid" id="q-fin">'+(learn?'Voir le bilan':'Terminer & corriger')+'</button>':'<button class="qbtn" id="q-next"'+(picked===null?' disabled':'')+'>Suivant →</button>')
  +'</div>';
- box.querySelectorAll(".rep").forEach(function(b){b.onclick=function(){answers[lvl][cur]=+b.dataset.i;renderQ();};});
- var pv=box.querySelector("#q-prev");if(pv)pv.onclick=function(){qs._i=Math.max(0,cur-1);renderQ();};
- var nx=box.querySelector("#q-next");if(nx)nx.onclick=function(){qs._i=Math.min(total-1,cur+1);renderQ();};
+ box.querySelectorAll(".rep:not([disabled])").forEach(function(b){b.onclick=function(){answers[lvl][cur]=+b.dataset.i;qSave();renderQ();};});
+ var pv=box.querySelector("#q-prev");if(pv)pv.onclick=function(){qs._i=Math.max(0,cur-1);qSave();renderQ();};
+ var nx=box.querySelector("#q-next");if(nx)nx.onclick=function(){qs._i=Math.min(total-1,cur+1);qSave();renderQ();};
  var fin=box.querySelector("#q-fin");if(fin)fin.onclick=renderSummary;
 }
 function renderSummary(){
  var box=document.getElementById("qcm-body"),qs=QCM[lvl];
  var good=qs.reduce(function(s,q,i){return s+(answers[lvl][i]===q.ok?1:0);},0);
  var corr=qs.map(function(q,i){var a=answers[lvl][i];if(a===q.ok)return '';
-  return '<div class="corr"><div class="cq">✗ Q'+(i+1)+' — '+q.q+'</div><div class="cans"><i>Ta réponse :</i> '+q.a[a]+'<br><i>Bonne réponse :</i> <b>'+q.a[q.ok]+'</b><br>'+q.fb[a]+' '+q.fb[q.ok]+'</div></div>';}).join('');
+  return '<div class="corr"><div class="cq">✗ Q'+(i+1)+' — '+q.q+'</div><div class="cans"><i>Ta réponse :</i> '+q.a[a]+'<br><i>Bonne réponse :</i> <b>'+q.a[q.ok]+'</b><br>'+q.fb[a]+' '+q.fb[q.ok]+'</div>'+qLink(q)+'</div>';}).join('');
  var rows=QCM.map(function(L,li){var g=L.reduce(function(s,q,i){return s+(answers[li][i]===q.ok?1:0);},0),done=answers[li].every(function(a){return a!==null;});
   return '<div class="lvl-row"><span class="ln">Niveau '+LV[li]+'</span><span class="sc">'+(done?g+'/'+L.length:'—')+'</span><span class="ln">'+(done?grade(g,L.length):'')+'</span></div>';}).join('');
  box.innerHTML='<div class="qsum"><div class="score-box"><div class="score-big">'+Math.round(good/qs.length*100)+'<small> %</small></div><div class="score-sub">'+good+' / '+qs.length+' · '+grade(good,qs.length)+'</div></div>'
  +'<div class="lvl-table">'+rows+'</div>'
  +(good<qs.length?'<div><div class="fib-lbl">Correction des erreurs</div><div class="corrections">'+corr+'</div></div>':'<div class="recap">Sans faute — niveau maîtrisé.</div>')
  +'<div class="btnrow"><button class="qbtn" id="q-again">Refaire ce niveau</button>'+(lvl<QCM.length-1?'<button class="qbtn solid" id="q-nextlvl">Niveau suivant →</button>':'<button class="qbtn solid" id="q-top">Retour au niveau I</button>')+'</div></div>';
- document.getElementById("q-again").onclick=function(){QCM[lvl]._i=0;answers[lvl]=QCM[lvl].map(function(){return null;});renderQ();};
+ document.getElementById("q-again").onclick=function(){QCM[lvl]._i=0;answers[lvl]=QCM[lvl].map(function(){return null;});qSave();renderQ();};
  var nl=document.getElementById("q-nextlvl");if(nl)nl.onclick=function(){setLvl(lvl+1);};
  var tp=document.getElementById("q-top");if(tp)tp.onclick=function(){setLvl(0);};
 }
-function setLvl(n){lvl=n;document.querySelectorAll(".lvl").forEach(function(x){x.classList.toggle("on",+x.dataset.q===n);});QCM[n]._i=0;renderQ();}
-QCM[0]._i=0;renderQ();
+function setLvl(n){lvl=n;qSave();renderQ();}
+renderQ();
+route();
 </script>
 
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
@@ -1400,6 +1590,11 @@ const mirQ=q=>new THREE.Quaternion(q.x,-q.y,-q.z,q.w);
 const M_BONE=new THREE.MeshStandardMaterial({color:0xb1a890,roughness:.78,metalness:0});
 const M_BONE2=new THREE.MeshStandardMaterial({color:0x8d8573,roughness:.85});
 const M_CART=new THREE.MeshStandardMaterial({color:0x7c8a86,roughness:.6,transparent:true,opacity:.55});
+const M_STEEL=new THREE.MeshStandardMaterial({color:0xaab0b6,roughness:.32,metalness:.85});
+const M_PLATE=new THREE.MeshStandardMaterial({color:0x3a3833,roughness:.6,metalness:.2,transparent:true,opacity:.42,depthWrite:false});
+const M_PAD=new THREE.MeshStandardMaterial({color:0x4a3a2e,roughness:.75});
+const M_FRAME=new THREE.MeshStandardMaterial({color:0x5c5f63,roughness:.45,metalness:.6});
+const M_CABLE=new THREE.MeshStandardMaterial({color:0xE3C88A,roughness:.5,emissive:0x2a2210});
 const M_GHOST=new THREE.MeshStandardMaterial({color:0xb1a890,roughness:.9,transparent:true,opacity:.1,depthWrite:false});
 
 /* ---------- squelette articulé, coordonnées « corps » en cm (y haut, z avant, x côté droit) ---------- */
@@ -1623,68 +1818,68 @@ const FIB={
 /* ---------- poses : [début, fin] interpolés par l'amplitude t ---------- */
 const CFG={
  dos:{sides:'RL',rad:.95,focus:['root',[0,42,-2]],dist:120,view:'dos',poses:[
-  {desc:"Épaule 165° → 25° d'élévation dans le plan frontal · omoplates qui s'abaissent",root:-8,arms:{ik:{h0:[40,99,3],h1:[40,56,8],pole:[.6,-1,-.3]},ret:[0,10],elev:[6,-4]},legs:{hip:90,knee:90}},
-  {desc:"Bras de l'avant (75°) vers l'arrière (−25°) · omoplates de l'écartement au pincement",arms:{ik:{h0:[6,37,51],h1:[6,36,11],pole:[.35,-1,-.7]},ret:[-10,14]},legs:{hip:90,knee:25}},
-  {desc:"Debout, buste penché 15° · bras tendus de 140° de flexion jusqu'aux cuisses (−5°), plan sagittal",root:15,arms:{e:[140,-5],p:90,el:12,ret:[0,6],elev:[5,-6]},legs:{hip:15,knee:12},plant:true,view:'profil'},
-  {desc:"Buste penché 60° · barre tirée en ligne droite vers le bas de la poitrine, coudes ouverts à ~70° du tronc",root:60,arms:{ik:{h0:[30,21,45],h1:[30,41,10],pole:[1,.35,-.6]},ret:[-6,12]},legs:{hip:60,knee:15},plant:true,view:'34d'}
+  {desc:"Épaule 165° → 25° d'élévation dans le plan frontal · omoplates qui s'abaissent",root:-8,arms:{ik:{h0:[40,99,3],h1:[40,56,8],pole:[.6,-1,-.3]},ret:[0,10],elev:[6,-4]},legs:{hip:90,knee:90},props:[{t:'bar',len:130},{t:'cable',from:'bar',to:[0,150,6]},{t:'box',c:[0,-9.5,4],s:[40,5,44]}]},
+  {desc:"Bras de l'avant (75°) vers l'arrière (−25°) · omoplates de l'écartement au pincement",arms:{ik:{h0:[6,37,51],h1:[6,36,11],pole:[.35,-1,-.7]},ret:[-10,14]},legs:{hip:90,knee:25},props:[{t:'bar',len:20},{t:'cable',from:'bar',to:[0,37,165]},{t:'box',c:[0,-9.5,4],s:[40,5,44]}]},
+  {desc:"Debout, buste penché 15° · bras tendus de 140° de flexion jusqu'aux cuisses (−5°), plan sagittal",root:15,arms:{e:[140,-5],p:90,el:12,ret:[0,6],elev:[5,-6]},legs:{hip:15,knee:12},plant:true,view:'profil',props:[{t:'bar',len:70},{t:'cable',from:'bar',to:[0,150,95]}]},
+  {desc:"Buste penché 60° · barre tirée en ligne droite vers le bas de la poitrine, coudes ouverts à ~70° du tronc",root:60,arms:{ik:{h0:[30,21,45],h1:[30,41,10],pole:[1,.35,-.6]},ret:[-6,12]},legs:{hip:60,knee:15},plant:true,view:'34d',props:[{t:'bar',len:180,plates:18}]}
  ]},
  pec:{sides:'RL',rad:.95,focus:['root',[0,44,5]],dist:125,view:[0,-.6,1],poses:[
-  {desc:"Banc à 35° · bras de la position basse (étirée) au verrouillage vertical",root:-55,arms:{ik:{h0:[40,47,7],h1:[40,69,41],pole:[1,0,-1]},ret:10},legs:{hip:35,knee:90}},
-  {desc:"Banc plat · bras de la position basse (étirée) au verrouillage vertical",root:-90,arms:{ik:{h0:[40,40,9],h1:[40,46,51],pole:[1,0,-1]},ret:10},legs:{hip:0,knee:90}},
-  {desc:"Décliné 15° · poussée orientée vers le bas du corps",root:-105,arms:{ik:{h0:[40,34,10],h1:[40,25,46],pole:[1,0,-1]},ret:10},legs:{hip:-15,knee:90}}
+  {desc:"Banc à 35° · bras de la position basse (étirée) au verrouillage vertical",root:-55,arms:{ik:{h0:[40,47,7],h1:[40,69,41],pole:[1,0,-1]},ret:10},legs:{hip:35,knee:90},props:[{t:'bar',len:180,plates:18},{t:'box',c:[0,29,-14.5],s:[28,66,5]}]},
+  {desc:"Banc plat · bras de la position basse (étirée) au verrouillage vertical",root:-90,arms:{ik:{h0:[40,40,9],h1:[40,46,51],pole:[1,0,-1]},ret:10},legs:{hip:0,knee:90},props:[{t:'bar',len:180,plates:18},{t:'box',c:[0,29,-14.5],s:[28,66,5]}]},
+  {desc:"Décliné 15° · poussée orientée vers le bas du corps",root:-105,arms:{ik:{h0:[40,34,10],h1:[40,25,46],pole:[1,0,-1]},ret:10},legs:{hip:-15,knee:90},props:[{t:'bar',len:180,plates:18},{t:'box',c:[0,29,-14.5],s:[28,66,5]}]}
  ]},
  del:{sides:'R',rad:1.0,focus:['scapR',[16,46,-2]],dist:74,view:'34',poses:[
-  {desc:"Flexion de l'épaule 0° → 100° · plan sagittal",arms:{e:[0,100],p:90,el:10},plane:'sag',view:'profil'},
-  {desc:"Abduction 5° → 95° · plan frontal · l'omoplate bascule au-delà de 30°",arms:{e:[5,95],p:0,el:15},plane:'front',view:'face'},
-  {desc:"Buste penché 60° · abduction horizontale vers l'arrière",root:60,arms:{e:[60,90],p:[90,-8],el:15,r:[0,60],ret:[-6,10]},legs:{hip:60,knee:15},plant:true,plane:'trans',view:'34d'},
-  {desc:"Élévation 5° → 105° dans le plan de l'omoplate (30° devant le frontal)",arms:{e:[5,105],p:30,el:10,r:10},plane:'scap'},
-  {desc:"Coude au corps fléchi à 90° · rotation de −40° (interne) à +70° (externe)",arms:{e:8,p:0,el:90,r:[-40,70]},plane:'trans',view:[.55,.75,.65],dist:85}
+  {desc:"Flexion de l'épaule 0° → 100° · plan sagittal",arms:{e:[0,100],p:90,el:10},plane:'sag',view:'profil',props:[{t:'db',hand:'R'}]},
+  {desc:"Abduction 5° → 95° · plan frontal · l'omoplate bascule au-delà de 30°",arms:{e:[5,95],p:0,el:15},plane:'front',view:'face',props:[{t:'db',hand:'R'}]},
+  {desc:"Buste penché 60° · abduction horizontale vers l'arrière",root:60,arms:{e:[60,90],p:[90,-8],el:15,r:[0,60],ret:[-6,10]},legs:{hip:60,knee:15},plant:true,plane:'trans',view:'34d',props:[{t:'db',hand:'R'}]},
+  {desc:"Élévation 5° → 105° dans le plan de l'omoplate (30° devant le frontal)",arms:{e:[5,105],p:30,el:10,r:10},plane:'scap',props:[{t:'db',hand:'R'}]},
+  {desc:"Coude au corps fléchi à 90° · rotation de −40° (interne) à +70° (externe)",arms:{e:8,p:0,el:90,r:[-40,70]},plane:'trans',view:[.55,.75,.65],dist:85,props:[{t:'cable',from:'R',to:[-62,22,30]}]}
  ]},
  tri:{sides:'R',rad:1.05,focus:['scapR',[17,40,-2]],dist:110,view:'profil',poses:[
-  {desc:"Épaule fléchie 175° · coude de 140° de flexion à l'extension",arms:{e:175,p:90,el:[140,5]},focus:['scapR',[17,70,-2]],dist:165},
-  {desc:"Épaule neutre · coude de 100° de flexion à l'extension",arms:{e:5,p:90,el:[100,0]}}
+  {desc:"Épaule fléchie 175° · coude de 140° de flexion à l'extension",arms:{e:175,p:90,el:[140,5]},focus:['scapR',[17,70,-2]],dist:165,props:[{t:'db',hand:'R',len:16,r:7}]},
+  {desc:"Épaule neutre · coude de 100° de flexion à l'extension",arms:{e:5,p:90,el:[100,0]},props:[{t:'cable',from:'R',to:[19,140,10]}]}
  ]},
  bic:{sides:'R',rad:1.05,focus:['scapR',[17,38,-2]],dist:110,view:'profil',poses:[
-  {desc:"Banc incliné, bras vertical derrière le buste · coude 0° → 135°",root:-40,arms:{e:-40,p:90,el:[0,135]},legs:{hip:50,knee:90}},
-  {desc:"Debout, bras le long du corps · coude 0° → 135°",arms:{e:0,p:90,el:[0,135]}},
-  {desc:"Pupitre : épaule fléchie 50° · coude 15° → 135°",root:8,arms:{e:50,p:90,el:[15,135]},legs:{hip:90,knee:90}}
+  {desc:"Banc incliné, bras vertical derrière le buste · coude 0° → 135°",root:-40,arms:{e:-40,p:90,el:[0,135]},legs:{hip:50,knee:90},props:[{t:'db',hand:'R'},{t:'box',c:[0,29,-14.5],s:[28,66,5]},{t:'box',c:[0,-9.5,4],s:[40,5,44]}]},
+  {desc:"Debout, bras le long du corps · coude 0° → 135°",arms:{e:0,p:90,el:[0,135]},props:[{t:'db',hand:'R'}]},
+  {desc:"Pupitre : épaule fléchie 50° · coude 15° → 135°",root:8,arms:{e:50,p:90,el:[15,135]},legs:{hip:90,knee:90},props:[{t:'db',hand:'R'},{t:'box',c:[17,35.5,7.5],s:[15,3,34],r:[40,0,0]},{t:'box',c:[0,-9.5,4],s:[40,5,44]}]}
  ]},
  ham:{sides:'R',rad:1.35,focus:['femR',[10,-16,0]],dist:130,view:'profil',poses:[
-  {desc:"Buste 85° → 0° (hanches poussées en arrière puis ramenées) · genou fléchi 26° → 8°",root:[85,0],arms:{e:[85,0],p:90},armSides:'RL',legs:{hip:[106,0],knee:[26,8]},plant:true},
-  {desc:"Allongé sur le ventre, hanche tendue · genou 0° → 115°",root:90,legs:{hip:0,knee:[0,115]}},
-  {desc:"Assis, hanche fléchie 100° · genou 5° → 110°",root:-10,legs:{hip:100,knee:[5,110]},focus:['femR',[10,-30,0]],dist:140}
+  {desc:"Buste 85° → 0° (hanches poussées en arrière puis ramenées) · genou fléchi 26° → 8°",root:[85,0],arms:{e:[85,0],p:90},armSides:'RL',legs:{hip:[106,0],knee:[26,8]},plant:true,props:[{t:'bar',len:180,plates:18}]},
+  {desc:"Allongé sur le ventre, hanche tendue · genou 0° → 115°",root:90,legs:{hip:0,knee:[0,115]},props:[{t:'box',c:[0,14,12.5],s:[32,96,5]}]},
+  {desc:"Assis, hanche fléchie 100° · genou 5° → 110°",root:-10,legs:{hip:100,knee:[5,110]},focus:['femR',[10,-30,0]],dist:140,props:[{t:'box',c:[0,-9.5,4],s:[40,5,44]},{t:'box',c:[0,26,-14.5],s:[34,52,5]}]}
  ]},
  calf:{sides:'R',rad:1.2,focus:['tibR',[10,-60,-1]],dist:80,view:'34d',poses:[
-  {desc:"Debout, genou tendu · cheville de −20° (talon bas) à +35° (sur la pointe)",legs:{ankle:[-20,35]},plant:true},
-  {desc:"Assis, genou fléchi 90° · cheville de −20° à +35°",legs:{hip:90,knee:90,ankle:[-20,35]}}
+  {desc:"Debout, genou tendu · cheville de −20° (talon bas) à +35° (sur la pointe)",legs:{ankle:[-20,35]},plant:true,props:[{t:'db',hand:'R'},{t:'db',hand:'L'}]},
+  {desc:"Assis, genou fléchi 90° · cheville de −20° à +35°",legs:{hip:90,knee:90,ankle:[-20,35]},props:[{t:'box',c:[0,-9.5,4],s:[40,5,44]}]}
  ]},
  fes:{sides:'RL',rad:1.45,focus:['root',[0,0,-2]],dist:120,view:'34d',poses:[
-  {desc:"Hip thrust · hanche de 80° de flexion à l'extension complète, genoux fléchis",root:[-55,-90],arms:{ik:{h0:[25,5,13],pole:[1,0,-.6]}},legs:{hip:[80,-5],knee:[75,90]},plant:true,view:'profil',dist:125},
-  {desc:"Debout sur la jambe gauche · abduction de la hanche droite de −12° à 40°",legSides:'R',legs:{abd:[-12,40]},view:'dos'},
-  {desc:"Squat profond · hanche 130° → 0°, genou 130° → 0°, buste penché 35° → 0°",root:[35,0],arms:{ik:{h0:[32,57,-9],pole:[.2,-1,-.4]}},legs:{hip:[130,0],knee:[130,0],ankle:[-35,0]},plant:true,view:'34d',dist:150}
+  {desc:"Hip thrust · hanche de 80° de flexion à l'extension complète, genoux fléchis",root:[-55,-90],arms:{ik:{h0:[25,5,13],pole:[1,0,-.6]}},legs:{hip:[80,-5],knee:[75,90]},plant:true,view:'profil',dist:125,props:[{t:'bar',len:180,plates:18}]},
+  {desc:"Debout sur la jambe gauche · abduction de la hanche droite de −12° à 40°",legSides:'R',legs:{abd:[-12,40]},view:'dos',props:[{t:'cable',from:'foot',to:[-70,-74,2]}]},
+  {desc:"Squat profond · hanche 130° → 0°, genou 130° → 0°, buste penché 35° → 0°",root:[35,0],arms:{ik:{h0:[32,57,-9],pole:[.2,-1,-.4]}},legs:{hip:[130,0],knee:[130,0],ankle:[-35,0]},plant:true,view:'34d',dist:150,props:[{t:'bar',len:180,plates:18}]}
  ]},
  quad:{sides:'R',rad:1.3,focus:['femR',[11,-20,1]],dist:115,view:'34',poses:[
-  {desc:"Leg extension, dossier droit · hanche fléchie 90°, genou 100° → 0°",legs:{hip:90,knee:[100,0]},view:'profil'},
-  {desc:"Leg extension, dossier incliné · hanche fléchie 40°, genou 100° → 0°",root:-50,legs:{hip:40,knee:[100,0]},view:'profil'},
-  {desc:"Squat profond · genou 130° → 0°, hanche 130° → 0°",root:[35,0],arms:{ik:{h0:[32,57,-9],pole:[.2,-1,-.4]}},legs:{hip:[130,0],knee:[130,0],ankle:[-35,0]},plant:true,view:'profil',dist:150}
+  {desc:"Leg extension, dossier droit · hanche fléchie 90°, genou 100° → 0°",legs:{hip:90,knee:[100,0]},view:'profil',props:[{t:'box',b:'femR',c:[-1,-17,-10],s:[42,40,4]},{t:'box',c:[0,26,-14.5],s:[34,52,5]}]},
+  {desc:"Leg extension, dossier incliné · hanche fléchie 40°, genou 100° → 0°",root:-50,legs:{hip:40,knee:[100,0]},view:'profil',props:[{t:'box',b:'femR',c:[-1,-17,-10],s:[42,40,4]},{t:'box',c:[0,26,-14.5],s:[34,52,5]}]},
+  {desc:"Squat profond · genou 130° → 0°, hanche 130° → 0°",root:[35,0],arms:{ik:{h0:[32,57,-9],pole:[.2,-1,-.4]}},legs:{hip:[130,0],knee:[130,0],ankle:[-35,0]},plant:true,view:'profil',dist:150,props:[{t:'bar',len:180,plates:18}]}
  ]},
  add:{sides:'RL',rad:1.15,focus:['root',[0,-14,2]],dist:120,view:'face',poses:[
-  {desc:"Assis, hanches fléchies 90° · adduction de 45° d'écart à 0°",legs:{hip:90,knee:90,abd:[45,0]},view:[0,1,.3],dist:130},
-  {desc:"Debout sur la jambe gauche · adduction de la hanche droite de 35° à −8°, genou tendu",legSides:'R',legs:{abd:[35,-8],hip:[0,12]}},
-  {desc:"Squat sumo · pieds larges fixés au sol, bassin qui descend de 38 cm, genoux ouverts dans l'axe des pieds",root:[25,0],rootPos:[[0,-38,-8],[0,-1.5,0]],arms:{ik:{h0:[4,-4,15],pole:[1,0,0]}},legs:{ik:{ank:[24,-76,-.5],pole:[.7,0,1]}},view:'34',dist:150}
+  {desc:"Assis, hanches fléchies 90° · adduction de 45° d'écart à 0°",legs:{hip:90,knee:90,abd:[45,0]},view:[0,1,.3],dist:130,props:[{t:'box',c:[0,-9.5,4],s:[40,5,44]},{t:'box',c:[0,26,-14.5],s:[34,52,5]}]},
+  {desc:"Debout sur la jambe gauche · adduction de la hanche droite de 35° à −8°, genou tendu",legSides:'R',legs:{abd:[35,-8],hip:[0,12]},props:[{t:'cable',from:'foot',to:[70,-74,2]}]},
+  {desc:"Squat sumo · pieds larges fixés au sol, bassin qui descend de 38 cm, genoux ouverts dans l'axe des pieds",root:[25,0],rootPos:[[0,-38,-8],[0,-1.5,0]],arms:{ik:{h0:[4,-4,15],pole:[1,0,0]}},legs:{ik:{ank:[24,-76,-.5],pole:[.7,0,1]}},view:'34',dist:150,props:[{t:'db2',len:16,r:8}]}
  ]},
  abs:{sides:'RL',rad:1.1,focus:['lomb',[0,20,4]],dist:110,view:'34',poses:[
-  {desc:"Allongé sur le dos · enroulement lombaire −5° → 12°, thoracique −8° → 38°",root:-90,spine:{l:[-5,12],t:[-8,38]},legs:{hip:60,knee:90},view:'profil',dist:140},
-  {desc:"Suspendu · bassin qui bascule de 0° à 28° en arrière, genoux montés vers la poitrine",root:[0,-28],spine:{l:[0,22],t:[0,6]},arms:{e:172,p:20},legs:{hip:[5,72],knee:[15,95]},pinHands:true,view:'profil',dist:160},
-  {desc:"Debout, bras tendus devant · rotation du buste de 30° à droite à 35° à gauche",spine:{rot:[-30,35]},arms:{e:80,p:70},view:'face'},
+  {desc:"Allongé sur le dos · enroulement lombaire −5° → 12°, thoracique −8° → 38°",root:-90,spine:{l:[-5,12],t:[-8,38]},legs:{hip:60,knee:90},view:'profil',dist:140,props:[{t:'box',c:[0,30,-13.5],s:[52,120,2.5]}]},
+  {desc:"Suspendu · bassin qui bascule de 0° à 28° en arrière, genoux montés vers la poitrine",root:[0,-28],spine:{l:[0,22],t:[0,6]},arms:{e:172,p:20},legs:{hip:[5,72],knee:[15,95]},pinHands:true,view:'profil',dist:160,props:[{t:'bar',len:120}]},
+  {desc:"Debout, bras tendus devant · rotation du buste de 30° à droite à 35° à gauche",spine:{rot:[-30,35]},arms:{e:80,p:70},view:'face',props:[{t:'cable',from:'bar',to:[75,46,22]},{t:'bar',len:12}]},
   {desc:"Debout, expiration complète · le nombril rentre vers la colonne, la taille se resserre (aspiration abdominale)",hollow:[0,1],view:[.45,.15,1],dist:95},
-  {desc:"Debout, haltère dans la main gauche · le buste passe de 25° d'inclinaison à gauche à 15° à droite",spine:{lat:[-25,15]},view:'dos',dist:115}
+  {desc:"Debout, haltère dans la main gauche · le buste passe de 25° d'inclinaison à gauche à 15° à droite",spine:{lat:[-25,15]},view:'dos',dist:115,props:[{t:'db',hand:'L'}]}
  ]},
  avb:{sides:'R',rad:.85,focus:['faR',[18.8,8,-1.5]],dist:75,view:'34',poses:[
-  {desc:"Coude fléchi 85°, paume vers le haut · poignet de 55° d'extension à 60° de flexion",arms:{e:12,p:90,el:85,wr:[-55,60]},view:'profil'},
-  {desc:"Coude fléchi 85°, paume vers le bas · poignet de 50° de flexion à 45° d'extension",arms:{e:12,p:90,el:85,pro:165,wr:[50,-45]},view:'profil'},
-  {desc:"Prise neutre (pouce en haut) · coude 5° → 130°",arms:{e:0,p:90,el:[5,130],pro:85}},
-  {desc:"Prise en pronation (paume vers le bas) · coude 5° → 125°",arms:{e:0,p:90,el:[5,125],pro:165}}
+  {desc:"Coude fléchi 85°, paume vers le haut · poignet de 55° d'extension à 60° de flexion",arms:{e:12,p:90,el:85,wr:[-55,60]},view:'profil',props:[{t:'db',hand:'R'}]},
+  {desc:"Coude fléchi 85°, paume vers le bas · poignet de 50° de flexion à 45° d'extension",arms:{e:12,p:90,el:85,pro:165,wr:[50,-45]},view:'profil',props:[{t:'db',hand:'R'}]},
+  {desc:"Prise neutre (pouce en haut) · coude 5° → 130°",arms:{e:0,p:90,el:[5,130],pro:85},props:[{t:'db',hand:'R'}]},
+  {desc:"Prise en pronation (paume vers le bas) · coude 5° → 125°",arms:{e:0,p:90,el:[5,125],pro:165},props:[{t:'db',hand:'R'}]}
  ]}
 };
 const VIEWS={face:[0,.12,1],profil:[1,.1,.12],dos:[0,.15,-1],dessus:[.05,1,.35],'34':[.8,.25,.6],'34d':[.75,.2,-.7]};
@@ -1817,10 +2012,13 @@ class Viewer{
     f.querySelectorAll('[data-tg]').forEach(b=>b.onclick=()=>{b.classList.toggle('on');const on=b.classList.contains('on'),t=b.dataset.tg;
       if(t==='labels')this.showLabels=on;
       if(t==='planes'&&this.planeGrp){this.planeGrp.visible=on;this.syncPlaneLabels();}
-      if(t==='cuff')this.fas.forEach(F=>{if(F.f>=3)F.strands.forEach(x=>x.mesh.visible=on);F.cuffHidden=!on&&F.f>=3;});
-      if(t==='ghost')this.fas.forEach(F=>F.strands.forEach(x=>x.mesh.visible=!on&&!F.cuffHidden));
+      if(t==='cuff')this.fas.forEach(F=>{F.cuffHidden=!on&&F.f>=3;});
+      if(t==='ghost')this.osSeuls=on;
+      if(t==='iso'){this.iso=on;this.boneGhost(on);}
       this.applyStates();});
     this.playBtn=s.querySelector('.v-play');this.amp=s.querySelector('.v-amp');this.ampv=s.querySelector('.v-ampv');this.desc=s.querySelector('.v-desc');this.bars=s.querySelector('.bio-bars');this.dots=s.querySelector('.bio-lt .dots');
+    const cb=s.querySelector('.cmp-btn'),cbox=f.parentElement.parentElement.querySelector('.ex-cmp');
+    cb.onclick=()=>{const open=cbox.hidden;cbox.hidden=!open;cb.setAttribute('aria-expanded',String(open));if(open)this.showCompare();};
     this.playBtn.onclick=()=>{this.playing=!this.playing;if(this.playing)this.phase=Math.acos(1-2*this.t)/Math.PI;this.syncPlay();};
     this.amp.oninput=()=>{this.playing=false;this.syncPlay();this.t=this.amp.value/1000;this.pose();};
     this.syncPlay();
@@ -1860,7 +2058,8 @@ class Viewer{
     this.bars.innerHTML=ids.map(f=>'<div class="bb" data-f="'+f+'"><span class="nm"><i style="background:'+this.pal[f]+'"></i>'+this.D.fibers[f]+'</span><span class="tr"><b style="background:'+this.pal[f]+'"></b></span><span class="vl">0 %</span></div>').join('');
     this.dots.innerHTML=ids.map(f=>'<circle r="4.2" fill="'+this.pal[f]+'" stroke="#0e0e0c" stroke-width="1.5" data-f="'+f+'"/>').join('');
     if(this.planes){Object.entries(this.planes).forEach(([k,g])=>{const on=k===this.pd.plane;g.userData.m.material.opacity=on?.17:.05;g.userData.ring.material.opacity=on?.7:.18;g.userData.el.style.color=on?'#ece6d8':'';if(k==='scap')g.visible=on;});this.syncPlaneLabels();}
-    this.applyStates();
+    this.applyStates();this.setProps();
+    const cbx=this.fig.parentElement.parentElement.querySelector('.ex-cmp');if(cbx&&!cbx.hidden){this.cmpF=undefined;this.showCompare();}
     this.setView(this.pd.view||this.cfg.view,snap);
     this.dirty=true;
   }
@@ -1873,7 +2072,81 @@ class Viewer{
       else{m.color.set(0x4d4a42);m.emissive.set(0x000000);m.opacity=.22;m.depthWrite=false;}
       m.needsUpdate=true;
       F.state=h?2:p?1:0;
-      F.lab.visible=this.showLabels&&(h||hv)&&F.strands[0].mesh.visible;F.el.className='v-label'+(!h&&hv?' part':'');});
+      const show=!this.osSeuls&&!F.cuffHidden&&(!this.iso||h||hv);F.strands.forEach(x=>x.mesh.visible=show);
+      F.lab.visible=this.showLabels&&(h||hv)&&show;F.el.className='v-label'+(!h&&hv?' part':'');});
+  }
+  spot(f){this.hover=f;this.applyStates();clearTimeout(this._spotT);this._spotT=setTimeout(()=>{if(this.hover===f){this.hover=-1;this.applyStates();}},3200);}
+  boneGhost(on){
+    if(!this.M_ISO)this.M_ISO=new THREE.MeshStandardMaterial({color:0xb1a890,roughness:.9,transparent:true,opacity:.13,depthWrite:false});
+    this.rigRoot.traverse(o=>{if(!o.isMesh)return;if(on){if(!o.userData.m0)o.userData.m0=o.material;o.material=this.M_ISO;}else if(o.userData.m0)o.material=o.userData.m0;});
+  }
+  /* longueur de chaque faisceau au début → fin de chaque angle, calculée sans toucher à l'affichage */
+  profiles(){
+    if(this._prof)return this._prof;
+    const save=this.boneList.map(b=>b.quaternion.clone()),saveT=this.t,savePd=this.pd,saveHol=this.hol,out=[];
+    this.cfg.poses.forEach((pd,i)=>{this.pd=pd;const row=[];
+      for(const t of [0,.25,.5,.75,1]){this.t=t;this.pose();this.boneList.forEach(b=>b.quaternion.copy(b.userData.tq));this.scene.updateMatrixWorld(true);this.rebuild();
+        row.push(this.fas.map(F=>{const rs=F.strands.filter(s=>s.side===F.sd);return rs.reduce((a,s)=>a+s.L/s.L0,0)/rs.length;}));}
+      out.push(row);});
+    this.pd=savePd;this.t=saveT;this.pose();this.hol=saveHol;this.boneList.forEach((b,k)=>b.quaternion.copy(save[k]));this.scene.updateMatrixWorld(true);this.rebuild();this.dirty=true;
+    return this._prof=out;
+  }
+  /* ---- accessoires : barre, haltères, câbles, bancs, suivant les mains / le corps ---- */
+  setProps(){
+    if(this.props)this.props.forEach(o=>{o.obj.parent&&o.obj.parent.remove(o.obj);});
+    this.props=[];const list=this.pd.props||[];
+    list.forEach(pr=>{
+      if(pr.t==='box'){const m=new THREE.Mesh(new THREE.BoxGeometry(pr.s[0],pr.s[1],pr.s[2]),pr.m==='frame'?M_FRAME:M_PAD);m.position.copy(V(pr.c));
+        if(pr.r)m.rotation.set(pr.r[0]*D2R,pr.r[1]*D2R,pr.r[2]*D2R);this.R.add(pr.b||'root',m);this.props.push({pr,obj:m});return;}
+      const g=new THREE.Group();this.scene.add(g);
+      if(pr.t==='bar'){const bar=new THREE.Mesh(new THREE.CylinderGeometry(1.2,1.2,1,14),M_STEEL);g.add(bar);g.userData.bar=bar;
+        if(pr.plates){g.userData.pl=[-1,1].map(sg=>{const d=new THREE.Mesh(new THREE.CylinderGeometry(pr.plates,pr.plates,4.5,32),M_PLATE);g.add(d);return d;});}}
+      else if(pr.t==='db'||pr.t==='db2'){const h=new THREE.Mesh(new THREE.CylinderGeometry(1.4,1.4,pr.len||14,12),M_STEEL);g.add(h);
+        [-1,1].forEach(sg=>{const d=new THREE.Mesh(new THREE.CylinderGeometry(pr.r||5.5,pr.r||5.5,4,24),M_PLATE);d.position.y=sg*((pr.len||14)/2+1.6);g.add(d);});}
+      else if(pr.t==='cable'){const c=new THREE.Mesh(new THREE.CylinderGeometry(.35,.35,1,6),M_CABLE);g.add(c);const pu=new THREE.Mesh(new THREE.TorusGeometry(3.2,.9,8,20),M_FRAME);g.add(pu);g.userData.c=c;g.userData.pu=pu;}
+      this.props.push({pr,obj:g});
+    });
+    this.updateProps();
+  }
+  updateProps(){
+    if(!this.props||!this.props.length)return;
+    const palm=sd=>this.R.w('hand'+sd,[sd==='R'?18.9:-18.9,-11,-1.4]).clone(),Y=new THREE.Vector3(0,1,0),q=new THREE.Quaternion();
+    this.props.forEach(({pr,obj})=>{
+      if(pr.t==='bar'){const a=palm('L'),b=palm('R'),mid=a.clone().add(b).multiplyScalar(.5),dir=b.clone().sub(a);if(dir.lengthSq()<1e-6)dir.set(1,0,0);dir.normalize();
+        obj.position.copy(mid);obj.quaternion.setFromUnitVectors(Y,dir);obj.userData.bar.scale.y=pr.len;
+        if(obj.userData.pl)obj.userData.pl.forEach((d,k)=>{d.position.y=(k?1:-1)*pr.len*.42;});}
+      else if(pr.t==='db'){obj.position.copy(palm(pr.hand));this.R.b['hand'+pr.hand].getWorldQuaternion(q);obj.quaternion.copy(q).multiply(new THREE.Quaternion().setFromUnitVectors(Y,new THREE.Vector3(0,0,1)));}
+      else if(pr.t==='db2'){obj.position.copy(palm('L').add(palm('R')).multiplyScalar(.5)).y-=7;obj.quaternion.identity();}
+      else if(pr.t==='cable'){const from=pr.from==='bar'?palm('L').add(palm('R')).multiplyScalar(.5):pr.from==='foot'?this.R.w('footR',[10,-78,-.5]).clone():palm(pr.from),to=this.R.w('root',pr.to).clone();
+        const d=to.clone().sub(from),L=d.length();obj.userData.c.position.copy(from).addScaledVector(d,.5);obj.userData.c.quaternion.setFromUnitVectors(Y,d.clone().normalize());obj.userData.c.scale.y=L;
+        obj.userData.pu.position.copy(to);obj.userData.pu.lookAt(from);}
+    });
+  }
+  /* image d'un angle à mi-mouvement, sans toucher à l'affichage */
+  snapshot(i){
+    const save=this.boneList.map(b=>b.quaternion.clone()),rp=this.R.b.root.position.clone(),saveT=this.t,savePd=this.pd,saveAi=this.ai,saveHol=this.hol,
+      cam=this.camera.position.clone(),tg=this.controls.target.clone(),lbl=this.showLabels,sz=new THREE.Vector2();this.renderer.getSize(sz);
+    this.pd=this.cfg.poses[i];this.ai=i;this.t=.6;this.pose();this.boneList.forEach(b=>b.quaternion.copy(b.userData.tq));
+    this.R.b.root.position.copy(this.R.b.root.userData.base);this.scene.updateMatrixWorld(true);this.plantFix(1);this.scene.updateMatrixWorld(true);this.rebuild();this.applyStates();
+    const fc=this.pd.focus||this.cfg.focus,f=this.R.w(fc[0],fc[1]),vw=this.pd.view||this.cfg.view;
+    const d=V(Array.isArray(vw)?vw:(VIEWS[vw]||VIEWS['34'])).normalize().applyQuaternion(this.R.b.root.quaternion);
+    this.camera.position.copy(f).addScaledVector(d,(this.pd.dist||this.cfg.dist)*.92);this.camera.lookAt(f);
+    this.renderer.setSize(640,480,false);this.camera.aspect=640/480;this.camera.updateProjectionMatrix();
+    this.renderer.render(this.scene,this.camera);const url=this.renderer.domElement.toDataURL('image/jpeg',.86);
+    this.renderer.setSize(sz.x,sz.y,false);this.camera.aspect=sz.x/sz.y;this.camera.updateProjectionMatrix();
+    this.pd=savePd;this.ai=saveAi;this.t=saveT;this.hol=saveHol;this.pose();this.boneList.forEach((b,k)=>b.quaternion.copy(save[k]));this.R.b.root.position.copy(rp);
+    this.camera.position.copy(cam);this.controls.target.copy(tg);this.camera.lookAt(tg);this.scene.updateMatrixWorld(true);this.rebuild();this.applyStates();this.dirty=true;
+    return url;
+  }
+  showCompare(f){
+    const P=this.profiles(),box=this.fig.parentElement.parentElement.querySelector('.ex-cmp');
+    if(f===undefined)f=this.cmpF!==undefined?this.cmpF:this.D.angles[this.ai].hit[0];this.cmpF=f;
+    const col=this.pal[f],X=r=>Math.max(0,Math.min(100,50+(r-1)/.45*50));
+    box.querySelector('.cmp-chips').innerHTML=this.D.fibers.map((n,j)=>'<button type="button" data-f="'+j+'" class="'+(j===f?'on':'')+'" style="'+(j===f?'background:'+this.pal[j]+';border-color:'+this.pal[j]:'border-color:'+this.pal[j]+';color:'+this.pal[j])+'">'+n+'</button>').join('');
+    box.querySelector('.cmp-rows').innerHTML=this.D.angles.map((a,i)=>{const v=P[i].map(r=>r[f]),lo=Math.min(...v),hi=Math.max(...v),s=v[0],e=v[4],role=a.hit.includes(f)?'moteur':a.partial.includes(f)?'partiel':'peu sollicité';
+      return '<div class="cmp-row'+(i===this.ai?' cur':'')+'" data-i="'+i+'" title="Afficher cet angle"><span class="an">'+a.deg+'<br><small style="font-family:IBM Plex Mono,monospace;font-weight:400;font-size:.72em;color:var(--faint)">'+role+'</small></span><span class="tk"><span class="rg" style="left:'+X(lo)+'%;width:'+Math.max(1,X(hi)-X(lo))+'%;background:'+col+';opacity:'+(role==='peu sollicité'?.35:.85)+'"></span><span class="st" style="left:'+X(s)+'%;background:'+col+'"></span><span class="en" style="left:'+X(e)+'%;border-'+(e>=s?'left':'right')+':10px solid '+col+'"></span></span><span class="vv">'+(Math.round((s-1)*100)>0?'+':'')+Math.round((s-1)*100)+' → '+(Math.round((e-1)*100)>0?'+':'')+Math.round((e-1)*100)+' %</span></div>';}).join('');
+    box.querySelectorAll('.cmp-chips button').forEach(b=>b.onclick=()=>this.showCompare(+b.dataset.f));
+    box.querySelectorAll('.cmp-row').forEach(r=>r.onclick=()=>{const btn=document.getElementById(this.key+'-angles').children[+r.dataset.i];if(btn)btn.click();});
   }
   pose(){
     const pd=this.pd,t=this.t,b=this.R.b;
@@ -1950,6 +2223,7 @@ class Viewer{
       });
       const mid=F.strands[Math.floor(F.strands.length/(F.nsd===2?4:2))]||F.strands[0];F.lab.position.copy(mid.out[Math.floor(RING/2)]);
     });
+    this.updateProps();
   }
   readout(){
     this.ampv.textContent=Math.round(this.t*100)+' %';if(this.playing)this.amp.value=Math.round(this.t*1000);
@@ -1982,6 +2256,9 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{const fig=e.target,key=fig.
   if(e.isIntersecting){if(!viewers[key]){try{viewers[key]=new Viewer(key,fig);}catch(err){console.error(err);fig.querySelector('.v-canvas').innerHTML='<div class="v-fallback">WebGL indisponible sur ce navigateur.</div>';return;}}visible.add(key);viewers[key].resize();}
   else visible.delete(key);}),{rootMargin:'120px'});
 document.querySelectorAll('figure.viewer').forEach(f=>io.observe(f));
+window.__spot=(key,f)=>{const v=viewers[key];if(v)v.spot(f);};
+window.__ensureViewer=async key=>{if(viewers[key])return viewers[key];const fig=document.querySelector('figure.viewer[data-key="'+key+'"]');if(!fig)return null;
+  try{viewers[key]=new Viewer(key,fig);}catch(e){console.error(e);return null;}return viewers[key];};
 window.addEventListener('explorer-angle',e=>{const v=viewers[e.detail.key];if(v)v.setAngle(e.detail.i);});
 let last=performance.now();
 function loop(now){const dt=Math.min(.05,(now-last)/1000);last=now;visible.forEach(k=>viewers[k]&&viewers[k].tick(dt));requestAnimationFrame(loop);}
