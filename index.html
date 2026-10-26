@@ -136,7 +136,8 @@ p.txt b{color:var(--ink);font-weight:600}
 .v-play:hover{background:var(--ink);color:var(--paper)}
 .v-amp{flex:1;accent-color:var(--hl)}
 .v-ampv{font-family:'IBM Plex Mono',monospace;font-size:11px;width:44px;text-align:right;color:var(--hl)}
-.v-flat{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
+.v-flat{position:absolute;inset:0;width:100%;height:100%;display:none;z-index:1}
+.viewer.flat .v-flat{display:block}
 .viewer.flat{cursor:default}
 .viewer.flat .v-canvas,.viewer.flat .v-hint,.viewer.flat .v-hover{display:none}
 .lev{display:flex;flex-direction:column;gap:7px}
