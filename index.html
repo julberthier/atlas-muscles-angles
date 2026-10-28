@@ -1991,6 +1991,17 @@ function fillTube(g,pts,rad,b0,b1){const P=g.attributes.position.array,N=g.attri
 const polyAt=(arr,u)=>{if(arr.length===1)return arr[0];const f=u*(arr.length-1),i=Math.min(arr.length-2,Math.floor(f)),k=f-i;return arr[i].map((v,j)=>lerp(v,arr[i+1][j],k));};
 const NS=24;
 
+/* ---------- latéralité : le rig est écrit avec x = côté droit et z = avant, un repère « gauche » (image en miroir).
+   On corrige à l'affichage seulement : projection miroir, faces retournées, gestes de la souris remis à l'endroit.
+   Toutes les données (attaches, poses, longueurs) restent inchangées. ---------- */
+const MIR=new THREE.Matrix4().makeScale(-1,1,1);
+function mirrorCam(c){c.updateProjectionMatrix();c.projectionMatrix.premultiply(MIR);c.projectionMatrixInverse.copy(c.projectionMatrix).invert();}
+function mirrorRenderer(ren){const sm=ren.state.setMaterial.bind(ren.state);ren.state.setMaterial=(m,cw,...a)=>sm(m,!cw,...a);
+  // à poser avant OrbitControls : chaque geste est renvoyé avec x inversé, pour que le modèle suive le doigt
+  const el=ren.domElement;['pointerdown','pointermove','pointerup','pointercancel'].forEach(t=>el.addEventListener(t,e=>{if(e.__m)return;e.stopImmediatePropagation();
+    const r=el.getBoundingClientRect(),ev=new PointerEvent(t,{bubbles:e.bubbles,cancelable:e.cancelable,clientX:r.left+r.right-e.clientX,clientY:e.clientY,screenX:e.screenX,screenY:e.screenY,pointerId:e.pointerId,pointerType:e.pointerType,isPrimary:e.isPrimary,button:e.button,buttons:e.buttons,pressure:e.pressure,ctrlKey:e.ctrlKey,shiftKey:e.shiftKey,altKey:e.altKey,metaKey:e.metaKey});
+    ev.__m=1;el.dispatchEvent(ev);if(ev.defaultPrevented)e.preventDefault();},true));}
+
 /* ---------- schéma 2D : projections, enveloppe convexe, couleurs des articulations ---------- */
 const PROJ={sag:v=>[v.z,v.y,v.x],front:v=>[-v.x,v.y,v.z],back:v=>[v.x,v.y,-v.z],top:v=>[v.x,v.z,v.y]}; // [x écran, y écran, profondeur]
 const JOINTS=[['thor','colonne'],['lomb','colonne'],['femR','hanche'],['tibR','genou'],['footR','cheville'],['humR','épaule'],['faR','coude'],['handR','poignet']];
@@ -2013,7 +2024,7 @@ class Viewer{
     this.renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
     this.renderer.setPixelRatio(Math.min(2,window.devicePixelRatio||1));
     this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.05;
-    host.appendChild(this.renderer.domElement);
+    host.appendChild(this.renderer.domElement);mirrorRenderer(this.renderer);
     this.lab=new CSS2DRenderer();this.lab.domElement.className='v-labels';host.appendChild(this.lab.domElement);
     this.lines=document.createElementNS('http://www.w3.org/2000/svg','svg');this.lines.setAttribute('class','v-lines');host.appendChild(this.lines);
     this.scene=new THREE.Scene();
@@ -2090,7 +2101,7 @@ class Viewer{
     this.amp.oninput=()=>{this.playing=false;this.syncPlay();this.t=this.amp.value/1000;this.pose();};
     this.syncPlay();
     const ray=new THREE.Raycaster(),mv=new THREE.Vector2(),hov=f.querySelector('.v-hover');
-    this.renderer.domElement.addEventListener('pointermove',e=>{const r=this.renderer.domElement.getBoundingClientRect();mv.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(mv,this.camera);
+    this.renderer.domElement.addEventListener('pointermove',e=>{const r=this.renderer.domElement.getBoundingClientRect();mv.set(1-(e.clientX-r.left)/r.width*2,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(mv,this.camera);
       const hit=ray.intersectObjects(this.fas.flatMap(F=>F.strands.map(x=>x.mesh)).filter(m=>m.visible),false)[0];const nh=hit?hit.object.userData.f:-1;
       if(nh!==this.hover){this.hover=nh;this.applyStates();const a=this.D.angles[this.ai];
         hov.innerHTML=nh<0?'':this.D.fibers[nh]+'<small>'+(a.hit.includes(nh)?'moteur':a.partial.includes(nh)?'partiel':'peu sollicité')+'</small>';}});
@@ -2114,7 +2125,7 @@ class Viewer{
     if(svg!==this._svg){this.lines.innerHTML=svg;this._svg=svg;}
   }
   syncPlay(){this.playBtn.textContent=this.playing?'❚❚':'▶';this.playBtn.setAttribute('aria-label',this.playing?'Pause':'Lecture');}
-  resize(){const r=this.host.getBoundingClientRect();if(!r.width)return;this.renderer.setSize(r.width,r.height,false);this.lab.setSize(r.width,r.height);this.camera.aspect=r.width/r.height;this.camera.updateProjectionMatrix();}
+  resize(){const r=this.host.getBoundingClientRect();if(!r.width)return;this.renderer.setSize(r.width,r.height,false);this.lab.setSize(r.width,r.height);this.camera.aspect=r.width/r.height;mirrorCam(this.camera);}
   setAngle(i,snap){
     this.ai=i;this.pd=this.cfg.poses[i];this.t=0;this.phase=0;this.amp.value=0;this.HP0=null;
     if(this.pd.pinHands){const sv=this.boneList.map(b=>b.quaternion.clone()),rp=this.R.b.root.position.clone();this.pose();this.boneList.forEach(b=>b.quaternion.copy(b.userData.tq));this.R.b.root.position.copy(this.R.b.root.userData.base);this.scene.updateMatrixWorld(true);this.HP0=this.R.w('handR',[18.8,-13,-1.4]).clone();this.boneList.forEach((b,k)=>b.quaternion.copy(sv[k]));this.R.b.root.position.copy(rp);this.scene.updateMatrixWorld(true);}
@@ -2200,9 +2211,9 @@ class Viewer{
     const fc=this.pd.focus||this.cfg.focus,f=this.R.w(fc[0],fc[1]),vw=this.pd.view||this.cfg.view;
     const d=V(Array.isArray(vw)?vw:(VIEWS[vw]||VIEWS['34'])).normalize().applyQuaternion(this.R.b.root.quaternion);
     this.camera.position.copy(f).addScaledVector(d,(this.pd.dist||this.cfg.dist)*.92);this.camera.lookAt(f);
-    this.renderer.setSize(640,480,false);this.camera.aspect=640/480;this.camera.updateProjectionMatrix();
+    this.renderer.setSize(640,480,false);this.camera.aspect=640/480;mirrorCam(this.camera);
     this.renderer.render(this.scene,this.camera);const url=this.renderer.domElement.toDataURL('image/jpeg',.86);
-    this.renderer.setSize(sz.x,sz.y,false);this.camera.aspect=sz.x/sz.y;this.camera.updateProjectionMatrix();
+    this.renderer.setSize(sz.x,sz.y,false);this.camera.aspect=sz.x/sz.y;mirrorCam(this.camera);
     this.pd=savePd;this.ai=saveAi;this.t=saveT;this.hol=saveHol;this.pose();this.boneList.forEach((b,k)=>b.quaternion.copy(save[k]));this.R.b.root.position.copy(rp);
     this.camera.position.copy(cam);this.controls.target.copy(tg);this.camera.lookAt(tg);this.scene.updateMatrixWorld(true);this.rebuild();this.applyStates();this.dirty=true;
     return url;
@@ -2473,7 +2484,7 @@ window.__viewers=viewers;window.__THREE=THREE;window.__pushW=pushW;
 (function planesDemo(){
   const host=document.querySelector('.pl-stage');if(!host)return;
   let ren;try{ren=new THREE.WebGLRenderer({antialias:true,alpha:true});}catch(e){host.querySelector('.v-fallback').textContent='WebGL indisponible sur ce navigateur.';return;}
-  const fb=host.querySelector('.v-fallback');if(fb)fb.remove();ren.setPixelRatio(Math.min(2,window.devicePixelRatio||1));ren.toneMapping=THREE.ACESFilmicToneMapping;host.appendChild(ren.domElement);
+  const fb=host.querySelector('.v-fallback');if(fb)fb.remove();ren.setPixelRatio(Math.min(2,window.devicePixelRatio||1));ren.toneMapping=THREE.ACESFilmicToneMapping;host.appendChild(ren.domElement);mirrorRenderer(ren);
   const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(32,1,1,2000);scene.add(cam);
   scene.add(new THREE.HemisphereLight(0xfff2dc,0x1a1712,1.1));const kl=new THREE.DirectionalLight(0xffffff,1.9);kl.position.set(.5,.7,1);cam.add(kl);
   const grp=new THREE.Group();scene.add(grp);const R=new Rig(grp);skeleton(R);scene.updateMatrixWorld(true);
@@ -2484,7 +2495,10 @@ window.__viewers=viewers;window.__THREE=THREE;window.__pushW=pushW;
            trans:{c:0xFFD23F,rot:[-Math.PI/2,0,0],ax:[0,1,0],arm:t=>qY(lerp(-10,105,t)).multiply(armQ(90,90,0))}}; // bras horizontal, rotation autour de la verticale de l'épaule
   const pane=new THREE.Mesh(new THREE.PlaneGeometry(140,140),new THREE.MeshBasicMaterial({transparent:true,opacity:.14,side:THREE.DoubleSide,depthWrite:false}));
   const edge=new THREE.LineSegments(new THREE.EdgesGeometry(pane.geometry),new THREE.LineBasicMaterial({transparent:true,opacity:.7}));pane.add(edge);pane.position.copy(S);scene.add(pane);
-  const axis=new THREE.Line(new THREE.BufferGeometry(),new THREE.LineDashedMaterial({color:0xece6d8,dashSize:2,gapSize:2,transparent:true,opacity:.75}));scene.add(axis);
+  // axe de rotation : dessiné entier par-dessus le squelette (sinon la moitié se perd dans le thorax), flèches aux deux bouts, point au centre de l'épaule
+  const AX_M=new THREE.MeshBasicMaterial({color:0xece6d8,depthTest:false}),axis=new THREE.Group();axis.renderOrder=10;
+  const rod=new THREE.Mesh(new THREE.CylinderGeometry(.45,.45,76,8),AX_M),tips=[1,-1].map(sg=>{const c=new THREE.Mesh(new THREE.ConeGeometry(1.8,5,14),AX_M);c.position.y=sg*40;if(sg<0)c.rotation.z=Math.PI;return c;});
+  const piv=new THREE.Mesh(new THREE.SphereGeometry(1.7,16,12),AX_M);axis.add(rod,...tips,piv);axis.traverse(o=>o.renderOrder=10);axis.position.copy(S);scene.add(axis);
   const trail=new THREE.Line(new THREE.BufferGeometry(),new THREE.LineBasicMaterial({transparent:true,opacity:.9}));scene.add(trail);
   const dot=new THREE.Mesh(new THREE.SphereGeometry(1.6,16,12),new THREE.MeshBasicMaterial());scene.add(dot);
   const ctl=new OrbitControls(cam,ren.domElement);ctl.enableDamping=true;ctl.enableZoom=false;ctl.enablePan=false;ctl.target.set(8,22,0);cam.position.set(8,22,0).add(new THREE.Vector3(.85,.45,1).normalize().multiplyScalar(265));
@@ -2496,17 +2510,17 @@ window.__viewers=viewers;window.__THREE=THREE;window.__pushW=pushW;
     pane.material.color.copy(col);edge.material.color.copy(col);trail.material.color.copy(col);dot.material.color.copy(col);pane.rotation.set(...d.rot);
     const n=new THREE.Vector3(...d.ax),pts=[];for(let i=0;i<=40;i++){setArm(d.arm(i/40));pts.push(palm());}trail.geometry.setFromPoints(pts);
     const off=pts.reduce((a,q)=>a+q.clone().sub(S).dot(n),0)/pts.length;pane.position.copy(S).addScaledVector(n,off);
-    axis.geometry.setFromPoints([S.clone().addScaledVector(n,-26),S.clone().addScaledVector(n,26)]);axis.computeLineDistances();
+    axis.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),n);
     document.querySelectorAll('.pl-card').forEach(c=>{const on=c.dataset.p===k;c.classList.toggle('on',on);c.setAttribute('aria-pressed',on);});}
   document.querySelectorAll('.pl-card').forEach(c=>c.onclick=()=>choose(c.dataset.p));choose('sag');
-  const size=()=>{const r=host.getBoundingClientRect();if(!r.width)return;ren.setSize(r.width,r.height,false);cam.aspect=r.width/r.height;cam.updateProjectionMatrix();
+  const size=()=>{const r=host.getBoundingClientRect();if(!r.width)return;ren.setSize(r.width,r.height,false);cam.aspect=r.width/r.height;mirrorCam(cam);
     // écran étroit : on recule pour garder le corps entier et la vitre dans le cadre
     cam.position.sub(ctl.target).setLength(310*Math.max(1,1.5/cam.aspect)).add(ctl.target);};
   new ResizeObserver(size).observe(host);size();
   let on=false,last=performance.now();new IntersectionObserver(es=>{on=es[0].isIntersecting;if(on){last=performance.now();requestAnimationFrame(tick);}}).observe(host);
   function tick(now){if(!on)return;const dt=Math.min(.05,(now-last)/1000);last=now;ph+=dt/2.4;const t=.5-.5*Math.cos(Math.PI*ph);
     setArm(P[cur].arm(t));dot.position.copy(palm());ctl.update();ren.render(scene,cam);requestAnimationFrame(tick);}
-  window.__planes={probe:k=>{choose(k);const d=P[k],n=new THREE.Vector3(...d.ax),o=[];for(let i=0;i<=20;i++){setArm(d.arm(i/20));const h=palm(),sh=b.humR.getWorldPosition(new THREE.Vector3()),el=R.w('faR',[18.5,17.5,-2]);o.push([h.clone().sub(pane.position).dot(n),sh.clone().sub(S).dot(n),sh.distanceTo(S),el.clone().sub(pane.position).dot(n)]);}const r=j=>{const v=o.map(x=>x[j]);return Math.min(...v).toFixed(1)+'..'+Math.max(...v).toFixed(1);};return k+' main hors vitre '+r(0)+' | épaule hors vitre '+r(1)+' | épaule déplacée '+r(2)+' | coude hors vitre '+r(3);},choose,set:t=>{setArm(P[cur].arm(t));dot.position.copy(palm());ren.render(scene,cam);}};
+  window.__planes={axisOf:k=>{const d=P[k],q=d.arm(1).multiply(d.arm(0).invert()),w=Math.sqrt(1-q.w*q.w)||1;return k+' axe réel ('+[q.x/w,q.y/w,q.z/w].map(v=>v.toFixed(2)).join(', ')+') vs affiché ('+d.ax.join(', ')+')';},probe:k=>{choose(k);const d=P[k],n=new THREE.Vector3(...d.ax),o=[];for(let i=0;i<=20;i++){setArm(d.arm(i/20));const h=palm(),sh=b.humR.getWorldPosition(new THREE.Vector3()),el=R.w('faR',[18.5,17.5,-2]);o.push([h.clone().sub(pane.position).dot(n),sh.clone().sub(S).dot(n),sh.distanceTo(S),el.clone().sub(pane.position).dot(n)]);}const r=j=>{const v=o.map(x=>x[j]);return Math.min(...v).toFixed(1)+'..'+Math.max(...v).toFixed(1);};return k+' main hors vitre '+r(0)+' | épaule hors vitre '+r(1)+' | épaule déplacée '+r(2)+' | coude hors vitre '+r(3);},choose,set:t=>{setArm(P[cur].arm(t));dot.position.copy(palm());ren.render(scene,cam);}};
 })();
 </script>
 </body>
