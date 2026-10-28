@@ -228,6 +228,7 @@ p.txt b{color:var(--ink);font-weight:600}
 .pl-card.on{border-left-color:var(--c);background:var(--paper3)}
 .pl-card h4{font-family:'Playfair Display',serif;font-size:1.15em;color:var(--c);margin:0}
 .pl-one{color:var(--ink)}
+.pl-note{font-size:.8em;color:var(--faint);line-height:1.55;margin-top:8px}
 .pl-card:not(.on) .pl-row{display:none}
 .pl-row i{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:.78em;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-right:8px}
 .gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0 28px}
@@ -442,15 +443,16 @@ table.bi td.sh{color:var(--cyan)}
 
   <div class="card">
     <h3><span class="n">Repère</span> · Les trois plans du mouvement</h3>
-    <p class="txt">Un plan, c'est la <b>vitre</b> le long de laquelle glisse le membre. Choisis-en un : le bras bouge dedans sans jamais en sortir. Pour lire un mouvement à plat, regarde la vitre de face — c'est ce que fait le bouton <b>Schéma 2D</b> des chapitres.</p>
+    <p class="txt">Un plan, c'est la <b>vitre</b> le long de laquelle glisse le segment qui bouge. Il tourne autour d'un <b>axe</b> qui traverse l'articulation, perpendiculaire à la vitre. Les trois plans de référence passent par le centre du corps ; tout plan parallèle porte le même nom, comme ici celui qui passe par l'épaule. Pour lire un mouvement à plat, regarde la vitre de face : c'est ce que fait le bouton <b>Schéma 2D</b> des chapitres.</p>
     <div class="pl-demo">
       <div class="pl-stage" aria-label="Squelette en 3D : le bras bouge dans le plan choisi"><div class="v-fallback">Chargement du modèle 3D…</div></div>
       <div class="pl-cards">
-        <button type="button" class="pl-card on" data-p="sag" style="--c:#9C7CFF"><h4>Sagittal</h4><span class="pl-one">Le bras avance et recule, comme un balancier.</span><span class="pl-row"><i>Mouvements</i>flexion, extension</span><span class="pl-row"><i>La vitre</i>parallèle à la coupe qui sépare la gauche et la droite du corps</span><span class="pl-row"><i>À plat</i>vu de profil</span><span class="pl-row"><i>Exemples</i>élévation frontale, curl, squat, soulevé de terre</span></button>
-        <button type="button" class="pl-card" data-p="front" style="--c:#2EE6D6"><h4>Frontal</h4><span class="pl-one">Le bras s'écarte sur le côté puis revient.</span><span class="pl-row"><i>Mouvements</i>abduction, adduction</span><span class="pl-row"><i>La vitre</i>parallèle à la coupe qui sépare l'avant et l'arrière du corps</span><span class="pl-row"><i>À plat</i>vu de face</span><span class="pl-row"><i>Exemples</i>élévation latérale, tirage vertical prise large, abduction de hanche</span></button>
-        <button type="button" class="pl-card" data-p="trans" style="--c:#FFD23F"><h4>Transverse</h4><span class="pl-one">Le bras tourne à l'horizontale, comme une porte.</span><span class="pl-row"><i>Mouvements</i>écarté et rapproché horizontal, rotations</span><span class="pl-row"><i>La vitre</i>parallèle à la coupe qui sépare le haut et le bas du corps</span><span class="pl-row"><i>À plat</i>vu de dessus</span><span class="pl-row"><i>Exemples</i>pec deck, oiseau, rotations d'épaule, rotation du buste</span></button>
+        <button type="button" class="pl-card on" data-p="sag" style="--c:#9C7CFF"><h4>Sagittal</h4><span class="pl-one">Le bras avance et recule, comme un balancier.</span><span class="pl-row"><i>Mouvements</i>flexion, extension</span><span class="pl-row"><i>Axe</i>transversal (de gauche à droite)</span><span class="pl-row"><i>La vitre</i>le plan sagittal médian coupe le corps en moitiés gauche et droite ; celui de l'épaule lui est parallèle</span><span class="pl-row"><i>À plat</i>vu de profil</span><span class="pl-row"><i>Exemples</i>élévation frontale, curl, squat, soulevé de terre</span></button>
+        <button type="button" class="pl-card" data-p="front" style="--c:#2EE6D6"><h4>Frontal</h4><span class="pl-one">Le bras s'écarte sur le côté puis revient.</span><span class="pl-row"><i>Mouvements</i>abduction, adduction, inclinaison latérale du buste</span><span class="pl-row"><i>Axe</i>antéro-postérieur (de l'avant vers l'arrière)</span><span class="pl-row"><i>La vitre</i>le plan frontal coupe le corps en partie avant et partie arrière</span><span class="pl-row"><i>À plat</i>vu de face</span><span class="pl-row"><i>Exemples</i>élévation latérale, tirage vertical prise large, abduction de hanche</span></button>
+        <button type="button" class="pl-card" data-p="trans" style="--c:#FFD23F"><h4>Transverse</h4><span class="pl-one">Le bras tourne à l'horizontale, comme une porte.</span><span class="pl-row"><i>Mouvements</i>abduction et adduction horizontales (bras à l'horizontale), rotations interne et externe, rotation du buste</span><span class="pl-row"><i>Axe</i>vertical (longitudinal)</span><span class="pl-row"><i>La vitre</i>le plan transverse coupe le corps en partie haute et partie basse</span><span class="pl-row"><i>À plat</i>vu de dessus</span><span class="pl-row"><i>Exemples</i>pec deck, oiseau, rotation d'épaule coude au corps, rotation du buste à la poulie</span></button>
       </div>
     </div>
+    <p class="pl-note">Dans la démonstration, l'omoplate est figée et le coude tendu pour isoler l'articulation de l'épaule : son centre reste fixe et la main décrit un arc plat. Dans un vrai mouvement, l'omoplate bascule aussi (rythme scapulo-huméral, environ 1° d'omoplate pour 2° d'humérus) et déplace un peu le centre de l'épaule.</p>
   </div>
 
   <div class="card">
@@ -2477,32 +2479,34 @@ window.__viewers=viewers;window.__THREE=THREE;window.__pushW=pushW;
   const grp=new THREE.Group();scene.add(grp);const R=new Rig(grp);skeleton(R);scene.updateMatrixWorld(true);
   const S=R.w('humR',[17.2,48.5,-2.8]).clone(),b=R.b;
   // plan (vitre) qui passe par l'épaule, axe de rotation perpendiculaire, trajectoire de la main
-  const P={sag:{c:0x9C7CFF,rot:[0,Math.PI/2,0],ax:[1,0,0],arm:t=>[lerp(-15,115,t),90,0]},
-           front:{c:0x2EE6D6,rot:[0,0,0],ax:[0,0,1],arm:t=>[lerp(5,110,t),0,0]},
-           trans:{c:0xFFD23F,rot:[-Math.PI/2,0,0],ax:[0,1,0],arm:t=>[90,lerp(100,-15,t),0]}};
-  const pane=new THREE.Mesh(new THREE.PlaneGeometry(92,92),new THREE.MeshBasicMaterial({transparent:true,opacity:.14,side:THREE.DoubleSide,depthWrite:false}));
+  const P={sag:{c:0x9C7CFF,rot:[0,Math.PI/2,0],ax:[1,0,0],arm:t=>armQ(lerp(-15,115,t),90,0)},
+           front:{c:0x2EE6D6,rot:[0,0,0],ax:[0,0,1],arm:t=>armQ(lerp(5,110,t),0,0)},
+           trans:{c:0xFFD23F,rot:[-Math.PI/2,0,0],ax:[0,1,0],arm:t=>qY(lerp(-10,105,t)).multiply(armQ(90,90,0))}}; // bras horizontal, rotation autour de la verticale de l'épaule
+  const pane=new THREE.Mesh(new THREE.PlaneGeometry(140,140),new THREE.MeshBasicMaterial({transparent:true,opacity:.14,side:THREE.DoubleSide,depthWrite:false}));
   const edge=new THREE.LineSegments(new THREE.EdgesGeometry(pane.geometry),new THREE.LineBasicMaterial({transparent:true,opacity:.7}));pane.add(edge);pane.position.copy(S);scene.add(pane);
   const axis=new THREE.Line(new THREE.BufferGeometry(),new THREE.LineDashedMaterial({color:0xece6d8,dashSize:2,gapSize:2,transparent:true,opacity:.75}));scene.add(axis);
   const trail=new THREE.Line(new THREE.BufferGeometry(),new THREE.LineBasicMaterial({transparent:true,opacity:.9}));scene.add(trail);
   const dot=new THREE.Mesh(new THREE.SphereGeometry(1.6,16,12),new THREE.MeshBasicMaterial());scene.add(dot);
   const ctl=new OrbitControls(cam,ren.domElement);ctl.enableDamping=true;ctl.enableZoom=false;ctl.enablePan=false;ctl.target.set(8,22,0);cam.position.set(8,22,0).add(new THREE.Vector3(.85,.45,1).normalize().multiplyScalar(265));
   const palm=()=>R.w('handR',[18.8,-13,-1.4]).clone();
-  function setArm(e,p,r){const up=e>30?Math.min(50,(e-30)*.45):0,qU=qZ(up);b.scapR.quaternion.copy(qU);b.humR.quaternion.copy(qU.clone().invert().multiply(armQ(e,p,r)));b.faR.quaternion.copy(qX(-5));grp.updateMatrixWorld(true);}
+  // omoplate figée et coude tendu : on isole l'articulation de l'épaule, dont le centre reste fixe
+  function setArm(q){b.humR.quaternion.copy(q);grp.updateMatrixWorld(true);}
   let cur='sag',ph=0;
   function choose(k){cur=k;const d=P[k],col=new THREE.Color(d.c);
     pane.material.color.copy(col);edge.material.color.copy(col);trail.material.color.copy(col);dot.material.color.copy(col);pane.rotation.set(...d.rot);
-    const A=new THREE.Vector3(...d.ax).multiplyScalar(26);axis.geometry.setFromPoints([S.clone().sub(A),S.clone().add(A)]);axis.computeLineDistances();
-    const pts=[];for(let i=0;i<=40;i++){setArm(...d.arm(i/40));pts.push(palm());}trail.geometry.setFromPoints(pts);
+    const n=new THREE.Vector3(...d.ax),pts=[];for(let i=0;i<=40;i++){setArm(d.arm(i/40));pts.push(palm());}trail.geometry.setFromPoints(pts);
+    const off=pts.reduce((a,q)=>a+q.clone().sub(S).dot(n),0)/pts.length;pane.position.copy(S).addScaledVector(n,off);
+    axis.geometry.setFromPoints([S.clone().addScaledVector(n,-26),S.clone().addScaledVector(n,26)]);axis.computeLineDistances();
     document.querySelectorAll('.pl-card').forEach(c=>{const on=c.dataset.p===k;c.classList.toggle('on',on);c.setAttribute('aria-pressed',on);});}
   document.querySelectorAll('.pl-card').forEach(c=>c.onclick=()=>choose(c.dataset.p));choose('sag');
   const size=()=>{const r=host.getBoundingClientRect();if(!r.width)return;ren.setSize(r.width,r.height,false);cam.aspect=r.width/r.height;cam.updateProjectionMatrix();
     // écran étroit : on recule pour garder le corps entier et la vitre dans le cadre
-    cam.position.sub(ctl.target).setLength(265*Math.max(1,1.5/cam.aspect)).add(ctl.target);};
+    cam.position.sub(ctl.target).setLength(310*Math.max(1,1.5/cam.aspect)).add(ctl.target);};
   new ResizeObserver(size).observe(host);size();
   let on=false,last=performance.now();new IntersectionObserver(es=>{on=es[0].isIntersecting;if(on){last=performance.now();requestAnimationFrame(tick);}}).observe(host);
   function tick(now){if(!on)return;const dt=Math.min(.05,(now-last)/1000);last=now;ph+=dt/2.4;const t=.5-.5*Math.cos(Math.PI*ph);
-    setArm(...P[cur].arm(t));dot.position.copy(palm());ctl.update();ren.render(scene,cam);requestAnimationFrame(tick);}
-  window.__planes={choose,set:t=>{setArm(...P[cur].arm(t));dot.position.copy(palm());ren.render(scene,cam);}};
+    setArm(P[cur].arm(t));dot.position.copy(palm());ctl.update();ren.render(scene,cam);requestAnimationFrame(tick);}
+  window.__planes={probe:k=>{choose(k);const d=P[k],n=new THREE.Vector3(...d.ax),o=[];for(let i=0;i<=20;i++){setArm(d.arm(i/20));const h=palm(),sh=b.humR.getWorldPosition(new THREE.Vector3()),el=R.w('faR',[18.5,17.5,-2]);o.push([h.clone().sub(pane.position).dot(n),sh.clone().sub(S).dot(n),sh.distanceTo(S),el.clone().sub(pane.position).dot(n)]);}const r=j=>{const v=o.map(x=>x[j]);return Math.min(...v).toFixed(1)+'..'+Math.max(...v).toFixed(1);};return k+' main hors vitre '+r(0)+' | épaule hors vitre '+r(1)+' | épaule déplacée '+r(2)+' | coude hors vitre '+r(3);},choose,set:t=>{setArm(P[cur].arm(t));dot.position.copy(palm());ren.render(scene,cam);}};
 })();
 </script>
 </body>
