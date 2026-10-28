@@ -217,12 +217,19 @@ p.txt b{color:var(--ink);font-weight:600}
 .toc .tn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--hl)}
 .toc .tt{font-family:'Playfair Display',serif;font-weight:700;font-size:1.05em}
 .toc .td{font-size:.8em;color:var(--faint);font-style:italic;line-height:1.4}
-.planes3{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
-.planes3>div{padding:4px 18px;border-left:1px solid var(--rule)}
-.planes3>div:first-child{border-left:none;padding-left:0}
-.planes3 svg{width:100%;max-width:150px;height:auto;display:block;margin:4px 0 8px}
-.planes3 h4{font-family:'Playfair Display',serif;font-size:1.05em;margin-bottom:4px}
-.planes3 p{font-size:.86em;color:var(--dim);line-height:1.55}
+.pl-demo{display:grid;grid-template-columns:1.25fr 1fr;gap:0;margin-top:10px;border:1px solid var(--rule)}
+.pl-stage{position:relative;min-height:380px;background:radial-gradient(ellipse 70% 60% at 50% 45%,#22201a 0%,#16150f 55%,#0f0e0b 100%);cursor:grab;touch-action:pan-y}
+.pl-stage canvas{display:block;width:100%!important;height:100%!important;position:absolute;inset:0}
+.pl-cards{display:flex;flex-direction:column;border-left:1px solid var(--rule)}
+.pl-card{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:4px;padding:12px 16px;border-top:1px solid var(--rule);border-left:3px solid transparent;cursor:pointer;color:var(--dim);font-size:.84em;line-height:1.5}
+.pl-card:first-child{border-top:none}
+.pl-card:hover{background:var(--paper3)}
+.pl-card:focus-visible{outline:1px solid var(--c);outline-offset:-3px}
+.pl-card.on{border-left-color:var(--c);background:var(--paper3)}
+.pl-card h4{font-family:'Playfair Display',serif;font-size:1.15em;color:var(--c);margin:0}
+.pl-one{color:var(--ink)}
+.pl-card:not(.on) .pl-row{display:none}
+.pl-row i{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:.78em;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-right:8px}
 .gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0 28px}
 .gloss dl{display:contents}
 .gloss div{padding:9px 0;border-bottom:1px solid var(--rule)}
@@ -300,8 +307,8 @@ table.bi td.sh{color:var(--cyan)}
 .qbtn.solid{background:var(--ink);color:var(--paper)}
 .qbtn.solid:hover{background:transparent;color:var(--ink)}
 .colophon{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);padding-top:12px;border-top:1px solid var(--rule)}
-@media(max-width:900px){.ex-grid{grid-template-columns:1fr}.viewer{border-right:none;border-bottom:1px solid var(--rule);min-height:380px;height:62vh}.ex-detail,.two{grid-template-columns:1fr}}
-@media(max-width:720px){.kid{grid-template-columns:1fr;gap:4px}.anat-card,.planes3>div{border-left:none;padding-left:0;border-top:1px solid var(--rule);padding-top:10px}.anat-card:first-child,.planes3>div:first-child{border-top:none}.planes3{grid-template-columns:1fr}.mh-meta span:last-child{display:none}.v-hint{display:none}}
+@media(max-width:900px){.pl-demo{grid-template-columns:1fr}.pl-stage{min-height:300px}.pl-cards{border-left:none;border-top:1px solid var(--rule)}.ex-grid{grid-template-columns:1fr}.viewer{border-right:none;border-bottom:1px solid var(--rule);min-height:380px;height:62vh}.ex-detail,.two{grid-template-columns:1fr}}
+@media(max-width:720px){.kid{grid-template-columns:1fr;gap:4px}.anat-card{border-left:none;padding-left:0;border-top:1px solid var(--rule);padding-top:10px}.anat-card:first-child{border-top:none}.planes3{grid-template-columns:1fr}.mh-meta span:last-child{display:none}.v-hint{display:none}}
 /* ===== MOBILE : en-tête compact, onglets défilants, cibles tactiles ≥ 40 px ===== */
 @media(max-width:720px){
  #masthead{padding:6px 12px 0}
@@ -435,10 +442,14 @@ table.bi td.sh{color:var(--cyan)}
 
   <div class="card">
     <h3><span class="n">Repère</span> · Les trois plans du mouvement</h3>
-    <div class="planes3">
-      <div><svg viewBox="0 0 150 110"><rect x="45" y="8" width="60" height="94" fill="none" stroke="#57534a"/><path d="M75 6 L75 104" stroke="#9C7CFF" stroke-width="2.5"/><path d="M60 22 L95 92" stroke="#9C7CFF" stroke-width="1" opacity=".35"/><circle cx="75" cy="20" r="7" fill="none" stroke="#a8a293"/><path d="M75 40 Q100 52 104 74" fill="none" stroke="#E3C88A" stroke-width="1.6" stroke-dasharray="3 3"/><path d="M104 74 l-6 -2 m6 2 l1 -6" stroke="#E3C88A" stroke-width="1.6"/></svg><h4>Sagittal</h4><p>Coupe le corps en gauche / droite. Mouvements vers l'avant et l'arrière : <b style="color:var(--ink)">flexion, extension</b>. Élévation frontale, curl, squat.</p></div>
-      <div><svg viewBox="0 0 150 110"><rect x="45" y="8" width="60" height="94" fill="none" stroke="#57534a"/><path d="M40 55 L110 55" stroke="#2EE6D6" stroke-width="2.5" transform="rotate(90 75 55)"/><rect x="45" y="8" width="60" height="94" fill="#2EE6D6" opacity=".08"/><circle cx="75" cy="20" r="7" fill="none" stroke="#a8a293"/><path d="M80 40 Q108 40 118 20" fill="none" stroke="#E3C88A" stroke-width="1.6" stroke-dasharray="3 3"/><path d="M118 20 l-6 2 m6 -2 l0 6" stroke="#E3C88A" stroke-width="1.6"/></svg><h4>Frontal</h4><p>Coupe le corps en avant / arrière. Mouvements sur le côté : <b style="color:var(--ink)">abduction, adduction</b>. Écarté latéral, traction prise large.</p></div>
-      <div><svg viewBox="0 0 150 110"><ellipse cx="75" cy="55" rx="58" ry="20" fill="#FFD23F" opacity=".08" stroke="#FFD23F" stroke-width="1.5"/><circle cx="75" cy="55" r="6" fill="#a8a293"/><path d="M75 55 L122 45" stroke="#a8a293" stroke-width="2"/><path d="M122 45 Q120 66 88 72" fill="none" stroke="#E3C88A" stroke-width="1.6" stroke-dasharray="3 3"/><path d="M88 72 l6 -4 m-6 4 l6 3" stroke="#E3C88A" stroke-width="1.6"/></svg><h4>Transverse</h4><p>Coupe le corps en haut / bas. Mouvements horizontaux et rotations : <b style="color:var(--ink)">écarté, oiseau, rotations</b>. Pec deck, face pull.</p></div>
+    <p class="txt">Un plan, c'est la <b>vitre</b> le long de laquelle glisse le membre. Choisis-en un : le bras bouge dedans sans jamais en sortir. Pour lire un mouvement à plat, regarde la vitre de face — c'est ce que fait le bouton <b>Schéma 2D</b> des chapitres.</p>
+    <div class="pl-demo">
+      <div class="pl-stage" aria-label="Squelette en 3D : le bras bouge dans le plan choisi"><div class="v-fallback">Chargement du modèle 3D…</div></div>
+      <div class="pl-cards">
+        <button type="button" class="pl-card on" data-p="sag" style="--c:#9C7CFF"><h4>Sagittal</h4><span class="pl-one">Le bras avance et recule, comme un balancier.</span><span class="pl-row"><i>Mouvements</i>flexion, extension</span><span class="pl-row"><i>La vitre</i>parallèle à la coupe qui sépare la gauche et la droite du corps</span><span class="pl-row"><i>À plat</i>vu de profil</span><span class="pl-row"><i>Exemples</i>élévation frontale, curl, squat, soulevé de terre</span></button>
+        <button type="button" class="pl-card" data-p="front" style="--c:#2EE6D6"><h4>Frontal</h4><span class="pl-one">Le bras s'écarte sur le côté puis revient.</span><span class="pl-row"><i>Mouvements</i>abduction, adduction</span><span class="pl-row"><i>La vitre</i>parallèle à la coupe qui sépare l'avant et l'arrière du corps</span><span class="pl-row"><i>À plat</i>vu de face</span><span class="pl-row"><i>Exemples</i>élévation latérale, tirage vertical prise large, abduction de hanche</span></button>
+        <button type="button" class="pl-card" data-p="trans" style="--c:#FFD23F"><h4>Transverse</h4><span class="pl-one">Le bras tourne à l'horizontale, comme une porte.</span><span class="pl-row"><i>Mouvements</i>écarté et rapproché horizontal, rotations</span><span class="pl-row"><i>La vitre</i>parallèle à la coupe qui sépare le haut et le bas du corps</span><span class="pl-row"><i>À plat</i>vu de dessus</span><span class="pl-row"><i>Exemples</i>pec deck, oiseau, rotations d'épaule, rotation du buste</span></button>
+      </div>
     </div>
   </div>
 
@@ -2455,6 +2466,44 @@ let last=performance.now();
 function loop(now){const dt=Math.min(.05,(now-last)/1000);last=now;visible.forEach(k=>viewers[k]&&viewers[k].tick(dt));requestAnimationFrame(loop);}
 requestAnimationFrame(loop);
 window.__viewers=viewers;window.__THREE=THREE;window.__pushW=pushW;
+
+/* ---------- repère : les trois plans, le bras glisse dans la vitre choisie ---------- */
+(function planesDemo(){
+  const host=document.querySelector('.pl-stage');if(!host)return;
+  let ren;try{ren=new THREE.WebGLRenderer({antialias:true,alpha:true});}catch(e){host.querySelector('.v-fallback').textContent='WebGL indisponible sur ce navigateur.';return;}
+  const fb=host.querySelector('.v-fallback');if(fb)fb.remove();ren.setPixelRatio(Math.min(2,window.devicePixelRatio||1));ren.toneMapping=THREE.ACESFilmicToneMapping;host.appendChild(ren.domElement);
+  const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(32,1,1,2000);scene.add(cam);
+  scene.add(new THREE.HemisphereLight(0xfff2dc,0x1a1712,1.1));const kl=new THREE.DirectionalLight(0xffffff,1.9);kl.position.set(.5,.7,1);cam.add(kl);
+  const grp=new THREE.Group();scene.add(grp);const R=new Rig(grp);skeleton(R);scene.updateMatrixWorld(true);
+  const S=R.w('humR',[17.2,48.5,-2.8]).clone(),b=R.b;
+  // plan (vitre) qui passe par l'épaule, axe de rotation perpendiculaire, trajectoire de la main
+  const P={sag:{c:0x9C7CFF,rot:[0,Math.PI/2,0],ax:[1,0,0],arm:t=>[lerp(-15,115,t),90,0]},
+           front:{c:0x2EE6D6,rot:[0,0,0],ax:[0,0,1],arm:t=>[lerp(5,110,t),0,0]},
+           trans:{c:0xFFD23F,rot:[-Math.PI/2,0,0],ax:[0,1,0],arm:t=>[90,lerp(100,-15,t),0]}};
+  const pane=new THREE.Mesh(new THREE.PlaneGeometry(92,92),new THREE.MeshBasicMaterial({transparent:true,opacity:.14,side:THREE.DoubleSide,depthWrite:false}));
+  const edge=new THREE.LineSegments(new THREE.EdgesGeometry(pane.geometry),new THREE.LineBasicMaterial({transparent:true,opacity:.7}));pane.add(edge);pane.position.copy(S);scene.add(pane);
+  const axis=new THREE.Line(new THREE.BufferGeometry(),new THREE.LineDashedMaterial({color:0xece6d8,dashSize:2,gapSize:2,transparent:true,opacity:.75}));scene.add(axis);
+  const trail=new THREE.Line(new THREE.BufferGeometry(),new THREE.LineBasicMaterial({transparent:true,opacity:.9}));scene.add(trail);
+  const dot=new THREE.Mesh(new THREE.SphereGeometry(1.6,16,12),new THREE.MeshBasicMaterial());scene.add(dot);
+  const ctl=new OrbitControls(cam,ren.domElement);ctl.enableDamping=true;ctl.enableZoom=false;ctl.enablePan=false;ctl.target.set(8,22,0);cam.position.set(8,22,0).add(new THREE.Vector3(.85,.45,1).normalize().multiplyScalar(265));
+  const palm=()=>R.w('handR',[18.8,-13,-1.4]).clone();
+  function setArm(e,p,r){const up=e>30?Math.min(50,(e-30)*.45):0,qU=qZ(up);b.scapR.quaternion.copy(qU);b.humR.quaternion.copy(qU.clone().invert().multiply(armQ(e,p,r)));b.faR.quaternion.copy(qX(-5));grp.updateMatrixWorld(true);}
+  let cur='sag',ph=0;
+  function choose(k){cur=k;const d=P[k],col=new THREE.Color(d.c);
+    pane.material.color.copy(col);edge.material.color.copy(col);trail.material.color.copy(col);dot.material.color.copy(col);pane.rotation.set(...d.rot);
+    const A=new THREE.Vector3(...d.ax).multiplyScalar(26);axis.geometry.setFromPoints([S.clone().sub(A),S.clone().add(A)]);axis.computeLineDistances();
+    const pts=[];for(let i=0;i<=40;i++){setArm(...d.arm(i/40));pts.push(palm());}trail.geometry.setFromPoints(pts);
+    document.querySelectorAll('.pl-card').forEach(c=>{const on=c.dataset.p===k;c.classList.toggle('on',on);c.setAttribute('aria-pressed',on);});}
+  document.querySelectorAll('.pl-card').forEach(c=>c.onclick=()=>choose(c.dataset.p));choose('sag');
+  const size=()=>{const r=host.getBoundingClientRect();if(!r.width)return;ren.setSize(r.width,r.height,false);cam.aspect=r.width/r.height;cam.updateProjectionMatrix();
+    // écran étroit : on recule pour garder le corps entier et la vitre dans le cadre
+    cam.position.sub(ctl.target).setLength(265*Math.max(1,1.5/cam.aspect)).add(ctl.target);};
+  new ResizeObserver(size).observe(host);size();
+  let on=false,last=performance.now();new IntersectionObserver(es=>{on=es[0].isIntersecting;if(on){last=performance.now();requestAnimationFrame(tick);}}).observe(host);
+  function tick(now){if(!on)return;const dt=Math.min(.05,(now-last)/1000);last=now;ph+=dt/2.4;const t=.5-.5*Math.cos(Math.PI*ph);
+    setArm(...P[cur].arm(t));dot.position.copy(palm());ctl.update();ren.render(scene,cam);requestAnimationFrame(tick);}
+  window.__planes={choose,set:t=>{setArm(...P[cur].arm(t));dot.position.copy(palm());ren.render(scene,cam);}};
+})();
 </script>
 </body>
 </html>
